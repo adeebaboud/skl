@@ -1,0 +1,200 @@
+<div class="modal-header light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">
+        {{title}}
+    </h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+    </div>
+    <form name="sectionForm" id="sectionForm">
+	   <uib-tabset class="nav-tabs-custom">
+        <uib-tab heading="Section Details">
+		<br/>
+			<div class="form-group">
+			<div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+					<div class="form-group">
+                        <label for="section_slug">Section Slug </label>
+                        <input required="" class="form-control" ng-model="section.section_slug" type="text" name="section_slug" id=
+						"section_slug" >
+
+                        <span ng-show="sectionForm.section_slug.$dirty &amp;&amp; sectionForm.section_slug.$invalid" class="help-inline text-red ">Section Slug Required</span>
+                    </div>
+               <div class="form-group">
+                        <label for="main_image">Section Image </label>
+                         <div class="input-group">
+                  <input required="" class="form-control" ng-model="section.main_image" type="text" name="main_image" id=
+						"main_image" readonly>
+						  <div class="input-group-addon with-link">
+                      <a filemanager-btn="main_image" class="" type="button"><i class="fa fa-search"></i></a>
+                          </div>
+
+                        </div>
+                        <span ng-show="sectionForm.main_image.$dirty &amp;&amp; sectionForm.main_image.$invalid" class="help-inline text-red ">Section Image Required</span>
+                    </div>
+
+                    <div class="form-group">
+                         <h5 class="modal-sub-title"><i class="fa fa-child"></i>Parent Section</h5>
+                    
+                       <select class="form-control" id="parent_id" value="{{section.parent_id}}"  ng-options="psection.section_id as (psection.section_title_en + ' | '  + psection.section_title_ar) for psection in sections"  ng-model="section.parent_id" name="parent_id">
+                           <option></option>
+                       </select>
+                      
+                    </div>
+
+                    <div class="form-group">
+                         <h5 class="modal-sub-title"><i class="fa fa-check-circle-o"></i>Show in Menu ? </h5>
+					<label class="tgl" for="show_in_menu">
+					   <input id="show_in_menu"  type="checkbox" ng-model="section.show_in_menu" name="show_in_menu"  ng-true-value="1" ng-false-value="0">
+						<span data-on="Yes" data-off="No"></span>
+					  </label>
+                    </div>
+                    <div class="form-group"> 
+                        <label for="section_layout"> Section Layout </label> 
+                        <select id="section_layout" class="form-control"  ng-model="section.section_layout" ng-options="layout.name as layout.name for layout in layouts" name="section_layout" >
+                                <option></option>
+                        </select>  
+                    </div> 
+                    <div class="form-group"> 
+                        <label for="sort"> Sort </label> 
+                        <input id="sort" class="form-control" type="number" ng-model="section.sort"  name="sort" >                         
+                    </div> 
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <div class="form-group">
+                        <label for="main_image">Image Preview </label>
+                        	<img ng-src="{{section.main_image}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%"class="img-responsive img-thumbnail">
+                    </div>
+                </div>
+			</div>
+
+		</div>
+		</uib-tab>
+        <uib-tab heading="English">
+
+        <div class="form-group">
+            <label for="section_title_en">Section Name En</label> <input required="" class="form-control" ng-model="section.section_title_en" type="text" name="section_title_en" id=
+                "section_title_en"> <span ng-show="sectionForm.section_title_en.$dirty &amp;&amp; sectionForm.section_title_en.$invalid" class="help-inline text-red">Section Title En Required</span>
+        </div>
+		<div class="form-group">
+            <label for="section_description_en">Section Description En</label>
+			<textarea required="" rows="3" class="form-control  " ui-tinymce name="section_description_en" id="section_description_en" ng-model="section.section_description_en"></textarea>
+			<span ng-show="sectionForm.section_description_en.$dirty &amp;&amp; sectionForm.section_description_en.$invalid" class="help-inline text-red">Section Description En Required</span>
+        </div>
+
+		 </uib-tab>
+        <uib-tab heading="Arabic">
+            <div class="form-group">
+                <label for="section_title_ar">Section Name Ar</label> <input required="" class="form-control" ng-model="section.section_title_ar" type="text" name="section_title_ar" id=
+                    "section_title_ar"> <span ng-show="sectionForm.section_title_ar.$dirty &amp;&amp; sectionForm.section_title_ar.$invalid" class="help-inline text-red">Section Title Ar Required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="section_description_ar">Section Description Ar</label>
+    			<textarea required="" ui-tinymce rows="3" class="form-control" name="section_description_ar" id="section_description_ar" ng-model="section.section_description_ar"></textarea>
+    			<span ng-show="sectionForm.section_description_ar.$dirty &amp;&amp; sectionForm.section_description_ar.$invalid" class="help-inline text-red">Section Description Ar Required</span>
+    		</div>
+
+
+        </uib-tab>
+
+        <uib-tab heading="Custom Fields" select="custom_fieldtooltipIsOpen = true">
+            <div class="box box-widget">
+                <div class="box-header">
+                    <h3 class="box-title">Section's Custom Fields</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-primary" uib-tooltip="Press to add Custom Fields" tooltip-is-open="custom_fieldtooltipIsOpen" tooltip-placement="top" ng-click="addcustom_field()"><i class="fa fa-plus"></i> Add Record</button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+                                <th width="20%">Label En &nbsp;&nbsp;<a href="" uib-tooltip="The label en of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+                                <th width="20%">Label Ar&nbsp;&nbsp;<a href="" uib-tooltip="The label ar of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+                                <th width="20%">Name&nbsp;&nbsp;<a href="" uib-tooltip="The Name of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>                                
+                                <th width="20%">Type &nbsp;&nbsp;<a href="" uib-tooltip="Type of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+                                <th width="20%">Is Required &nbsp;&nbsp;<a href="" uib-tooltip="Is Required of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>                                
+                                <th style="width:20%"> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="custom_field in section.custom_fields">
+                                <td ng-if="!custom_field.$$is_editing">{{custom_field.label_en}}</td>
+                                <td ng-if="custom_field.$$is_editing">
+                                    <div class="input-group">
+                                    <input class="form-control" ng-model="custom_field.label_en" type="text" name="label_en">
+                                        
+                                    </div>
+                                </td>
+
+                                <td ng-if="!custom_field.$$is_editing">{{custom_field.label_ar}}</td>
+                                <td ng-if="custom_field.$$is_editing">
+                                    <div class="input-group">
+                                        <input class="form-control" ng-model="custom_field.label_ar" type="text"  name="label_ar">
+                                    </div>
+                                </td>
+                                <td ng-if="!custom_field.$$is_editing">{{custom_field.name}}</td>
+                                <td ng-if="custom_field.$$is_editing">
+                                    <div class="input-group">
+                                        <input class="form-control" ng-model="custom_field.name" type="text"  name="name">
+                                    </div>
+                                </td>                                
+
+
+                                <td ng-if="!custom_field.$$is_editing">{{custom_field.type}}</td>
+                                <td ng-if="custom_field.$$is_editing">
+                                    <div class="input-group">
+                                         <select id="type" class="form-control" ng-model="custom_field.type" name="type">
+                                            <option value="text"> Text</option>
+                                            <option value="textarea">Multiline Text</option>
+                                            <option value="file"> File</option>
+                                            <option value="editor"> Editor</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div class="input-group">
+                                        <label  class="tgl tgl-gray">
+                                        <input type="checkbox" name="is_required" ng-disabled="!custom_field.$$is_editing" ng-true-value="1" ng-false-value="0"   ng-model="custom_field.is_required">
+                                         <span data-on="Yes" data-off="No"></span>
+                                        </label>
+                                    </div>
+                                </td>
+
+                                <td ng-if="!custom_field.$$is_editing">
+                                    <button class="btn btn-xs btn-warning" ng-click="editcustom_field(custom_field)"><i class="fa fa-pencil"></i> </button>
+                                    <button class="btn btn-xs btn-danger" ng-click="removecustom_field(custom_field)"><i class="fa fa-trash-o"></i> </button>
+                                   
+                                </td>
+                                <td ng-if="custom_field.$$is_editing">
+                                    <button class="btn btn-xs btn-success" ng-click="savecustom_field(custom_field)"><i class="fa fa-save"></i> </button>
+                                    <button class="btn btn-xs btn-danger" ng-click="cancelcustom_field(custom_field)"><i class="fa fa-undo"></i> </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div>
+        </uib-tab>
+
+
+    </uib-tabset>
+    </form>
+	
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(section)"><i class="fa fa-ban"></i>Cancel</button>
+</div>

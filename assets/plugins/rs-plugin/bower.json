@@ -1,0 +1,14 @@
+{
+ "name": "rs-plugin",
+  "description": "rs-plugin.",
+  "keywords": [
+    "css"
+  ],
+  "homepage": "http://test.com",
+  "license": "MIT",
+  "main": [
+    "css/settings.css",
+    "js/jquery.themepunch.plugins.min.js",
+    "js/jquery.themepunch.revolution.min.js"
+  ]
+}

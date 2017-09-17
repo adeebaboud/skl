@@ -1,0 +1,66 @@
+
+<section class="content-header">
+<h1>
+    {{title}} <small>{{title}}</small>
+</h1>
+<ol class="breadcrumb">
+    <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+    </li>
+    <li class="#">Dashboard</li>
+	<li class="active">Menu Items</li>
+</ol>
+</section>
+
+<section class="content overlay-wrapper">
+    <nav class="navbar navbar-default">
+		<div class="container-fluid">
+			   <button type="button" ng-click="refreshGrid()" class="btn btn-warning navbar-btn"><i class="fa fa-refresh"></i> Refresh</button>
+			   <button type="button" ng-click="toggleSearchBox()" class="btn btn-success navbar-btn"><i class="fa fa-search"></i> Search</button>
+			   <button type="button" ng-click="export()" class="btn btn-primary navbar-btn pull-right"><i class="fa fa-download"></i> </button>
+		</div>
+    </nav>
+	<div class="search-form" ng-show="showSearch" >
+			<form class="box box-widget">
+				<div class="row box-body">
+				   
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="form-group">
+							<label for="search_branch">Branch</label>
+							<select id="search_branch"   ng-change="doSearch();" class="form-control" ng-options="branch.branch_id as branch.branch_name_ar for branch in branches" ng-model="search.branch" name="branch">
+								<option value=""> </option>
+							</select>
+						</div>
+					</div>
+				   
+				   <div class="col-md-4 col-sm-6 col-xs-12 ">
+						<div class="form-group">
+							<label for="search_fromdate">From Date</label>
+							<p class="input-group calendar-box">
+								<input id="search_fromdate"  type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-change="doSearch(); checkClear();" ng-model="search.fromdate" is-open="popup1.opened" min-date="minDate" max-date="maxDate2" datepicker-options="dateOptions"   close-text="Close"  />
+								  <span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="popup1.opened = true;"><i class="fa fa-calendar"></i></button>
+								  </span>
+							</p>
+						</div>
+					</div>
+					
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="form-group">
+							<label for="search_todate">To Date</label>
+							<p class="input-group calendar-box">
+								<input id="search_todate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-change="doSearch(); checkClear();" ng-model="search.todate" is-open="popup2.opened" min-date="minDate2" max-date="maxDate" datepicker-options="dateOptions"   close-text="Close"  />
+								  <span class="input-group-btn">
+									<button type="button" class="btn btn-default" ng-click="popup2.opened = true;"><i class="fa fa-calendar"></i></button>
+								  </span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+<div ui-grid="gridOptions" ui-grid-pagination ui-grid-pinning ui-grid-exporter ui-grid-selection class="grid"></div>
+<div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</section>

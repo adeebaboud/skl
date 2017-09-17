@@ -1,0 +1,75 @@
+
+
+ <section class="content-header">
+     <h1>
+         {{title}}
+         <small>{{title}}</small>
+     </h1>
+     <ol class="breadcrumb">
+         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+         <li class="#">Dashboard</li>
+		 <li class="active"> {{title}}</li>
+     </ol>
+ </section>
+
+ <section class="content overlay-wrapper">
+ <nav class="navbar navbar-default">
+         <div class="container-fluid">
+             <button type="button" ng-click="add()" class="btn btn-primary navbar-btn"><i class="fa fa-plus"></i> Add User</button>
+			<button type="button" ng-click="toggleSearchBox();" class="btn btn-success navbar-btn"><i class="fa fa-search"></i> Search</button>
+			
+			
+         </div>
+     </nav>
+
+	<div class="search-form" ng-show="showSearch" >
+         <form class="">
+             <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="search_first_name">First Name</label>
+                        <input type="text" class="form-control"  ng-change="doSearch();" ng-model="search.first_name" id="search_first_name">
+                    </div>
+				
+                    <div class="form-group">
+                        <label for="search_last_name">Last Name</label>
+                        <input type="text" class="form-control"  ng-change="doSearch();" ng-model="search.last_name" id="search_last_name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="search_groups">groups</label>
+                        <select id="search_groups" ng-disabled="is_member"   ng-change="doSearch();" class="form-control" ng-options="group.id as group.name for group in groups |filter: {'id':'!4'}" ng-model="search.group_id" name="group_id">
+                            <option value=""> </option>
+                        </select>
+                    </div>
+				
+                    <div class="form-group">
+                        <label for="search_email">Email</label>
+                        <input type="text" class="form-control"  ng-change="doSearch();"  ng-model="search.email" id="search_email">
+                    </div>
+                </div>
+             </div>
+         </form>
+     </div>
+
+     <div ui-grid="gridOptions" ui-grid-pagination ui-grid-pinning class="grid"></div>
+
+     <div class="overlay" ng-show="isLoading.grid">
+         <i class="fa fa-refresh fa-spin"></i>
+     </div>
+ </section>
+
+
+<div>
+	<script type="text/ng-template" id="DeleteDialog.html"> 
+		<div class="modal-header red-bg">
+            <h3 class="modal-title">Delete Confirmation</h3>
+        </div>
+		<div class="modal-body with-padding"> Are you sure want to delete this ? </div>
+		<div class="modal-footer">
+            <button class="btn btn-success" type="button" ng-click="confirm_delete()"><i class="fa fa-check"></i>Yes</button>
+            <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban"></i>No</button>
+        </div>
+    </script>
+</div>

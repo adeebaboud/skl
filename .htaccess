@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond $1 !^(index\.php|mobapi|assets|thumbs|db|upload|user_guide|sitemap.xml|themes|images|robots\.txt) 
+RewriteRule ^(.*) /skl_site/src/index.php/$1 [L]

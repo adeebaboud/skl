@@ -1,0 +1,208 @@
+<div class="modal-header light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">
+        {{title}}
+    </h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="modelForm" id="modelForm">
+	 <uib-tabset class="nav-tabs-custom">
+
+		<uib-tab ng-repeat="tab in data.tabs" heading="{{tab.name}}" >
+			<div class="row">
+				<div ng-repeat="field in tab.fields" class="col-md-6 col-xs-6 col-sm-6">
+
+					<div ng-if="field.type!='checkbox' && field.type!='image'"  class="form-group">
+						<label for="name">{{field.name}}</label>
+
+						<input ng-if="field.type=='text'"  class="form-control" ng-model="model[field.field]" type="text" name="{{field.field}}" id="{{field.field}}">
+						<input ng-if="field.type=='email'"  class="form-control" ng-model="model[field.field]" type="email" name="{{field.field}}" id="{{field.field}}">
+						<input ng-if="field.type=='number'"  class="form-control" ng-model="model[field.field]" type="number" name="{{field.field}}" id="{{field.field}}">
+
+						<div ng-if="field.type=='datetime'"  class="dropdown">
+							<a class="dropdown-toggle" id="dropdown{{field.field}}" role="button" data-toggle="dropdown" data-target="#" href="">
+								<div class="input-group">
+									<input type="text" class="form-control" ng-model="model[field.field]" date-time-input="YYYY-MM-DD HH:mm">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+								</div>
+							</a>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<datetimepicker ng-model="model[field.field]" data-datetimepicker-config="{ dropdownSelector: '#dropdown'+field.field}" data-on-set-time="onTimeSet(newDate, model,field.field)"></datetimepicker>
+							</ul>
+
+						</div>
+
+						<textarea ng-if="field.type=='textarea'" ng-model="model[field.field]" name="{{field.field}}" class="form-control" ></textarea>
+
+
+						<ui-select ng-if="field.type=='ui-select'" id="{{field.field}}" ng-model="model[field.field]"
+						theme="bootstrap" reset-search-input="false"  >
+							<ui-select-choices class="ui-select-choices" repeat="entity[field.managerid] as entity in entityslist[field.managername]"
+											refresh="searchManager($select.search,field)"
+											refresh-delay="0">
+								<div ng-bind-html="getfieldsvalue(entity,field.showfields)"></div>
+							</ui-select-choices>
+							<ui-select-match class="ui-select-match" placeholder="Select {{field.name}}">
+								{{ getfieldsvalue($select.selected,field.showfields) }}
+							</ui-select-match>
+						</ui-select>
+
+
+					</div>
+
+
+
+
+					<div ng-if="field.type=='checkbox'"  class="form-group">
+						<h5 class="modal-sub-title"><i class="fa fa-check-circle-o"></i>{{field.name}}</h5>
+						<label class="tgl" for="status">
+							<input  type="checkbox" ng-model="model[field.field]" id="{{field.field}}" name="{{field.field}}" ng-true-value="1" ng-false-value="0">
+							<span data-on="Yes" data-off="No"></span>
+						</label>
+					</div>
+				</div>
+				
+			</div>
+
+
+			<div ng-repeat="field in tab.fields" ng-if="field.type=='image'" class="row">
+
+				<div  class="form-group col-md-6 col-sm-6 col-xs-12">
+					<label for="{{field.field}}">{{field.name}}</label>
+					<div class="input-group">
+						<input required class="form-control" ng-model="model[field.field]" type="text"
+							name="{{field.field}}" id="{{field.field}}" readonly>
+						<div class="input-group-addon with-link">
+							<a filemanager-btn="{{field.field}}" class="" type="button"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</div>
+				<div  class="form-group col-md-6 col-sm-6 col-xs-12">
+
+					<div class="form-group">
+						<label for="{{field.field}}">Image Preview </label>
+						<img ng-src="{{model[field.field]}}" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMvaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTU3NzIsIDIwMTQvMDEvMTMtMTk6NDQ6MDAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE0IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowOUIxMjQ2M0Q1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowOUIxMjQ2NEQ1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA5QjEyNDYxRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA5QjEyNDYyRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgID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" width="100%" class="img-responsive">
+					</div>
+				</div>
+
+			</div>
+
+
+			<div ng-repeat="grid in tab.grids" class="box box-widget">
+				<div class="box-header">
+					<h3 class="box-title">{{grid.name}}</h3>
+					<div class="box-tools">
+						<button class="btn btn-primary" uib-tooltip="Press to add {{grid.name}}" tooltip-is-open="trainingtooltipIsOpen" tooltip-placement="top" ng-click="addrowgrid(grid)"><i class="fa fa-plus"></i> Add Record</button>
+						
+					</div>
+				</div><!-- /.box-header -->
+				<div class="box-body no-padding">
+					<table class="table table-bordered" style="width:100%">
+						<thead>
+							<tr>
+
+								<th ng-repeat="field in grid.fields" >{{field.name}}<a  uib-tooltip="The {{field.name}} of the {{grid.name}}" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+								<th style="width:20%"> Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="modelgrid in model[grid.field]">
+
+								<td ng-repeat="field in grid.fields" ng-if="!modelgrid.$$is_editing && (field.type=='text'||field.type=='email'||field.type=='number'||field.type=='textarea')" >{{modelgrid[field.field]}}</td>
+								<td ng-repeat="field in grid.fields" ng-if="modelgrid.$$is_editing && (field.type=='text'||field.type=='email'||field.type=='number'||field.type=='textarea')" >
+									<div class="input-group">
+											<input ng-if="field.type=='text'"  class="form-control" ng-model="modelgrid[field.field]" type="text" name="{{field.field}}" id="{{field.field}}">
+											<input ng-if="field.type=='email'"  class="form-control" ng-model="modelgrid[field.field]" type="email" name="{{field.field}}" id="{{field.field}}">
+											<input ng-if="field.type=='number'"  class="form-control" ng-model="modelgrid[field.field]" type="number" name="{{field.field}}" id="{{field.field}}">
+											<textarea ng-if="field.type=='textarea'" ng-model="modelgrid[field.field]" name="{{field.field}}" class="form-control" ></textarea>
+									</div>
+								</td>  
+
+								<td ng-repeat="field in grid.fields" ng-if="field.type=='image'" >
+
+
+									<div   class="row">
+
+										<div  ng-if="modelgrid.$$is_editing" class="form-group col-md-12 col-sm-12 col-xs-12">
+											<label for="{{field.field}}">{{field.name}}</label>
+											<div class="input-group">
+												<input required class="form-control" ng-model="modelgrid[field.field]" type="text"
+													name="{{field.field}}" id="{{field.field}}" readonly>
+												<div class="input-group-addon with-link">
+													<a filemanager-btn="{{field.field}}" class="" type="button"><i class="fa fa-search"></i></a>
+												</div>
+											</div>
+										</div>
+										<div  class="form-group col-md-12 col-sm-12 col-xs-12">
+
+											<div class="form-group">
+												<label for="{{field.field}}">Image Preview </label>
+												<img ng-src="{{modelgrid[field.field]}}" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMvaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTU3NzIsIDIwMTQvMDEvMTMtMTk6NDQ6MDAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE0IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowOUIxMjQ2M0Q1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowOUIxMjQ2NEQ1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA5QjEyNDYxRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA5QjEyNDYyRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgID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" width="100%" class="img-responsive">
+											</div>
+										</div>
+
+									</div>
+
+
+
+
+								</td>  
+
+								<!--<td  >
+									<label class="tgl" for="reserve_tablestatus{{$index+1}}">
+									<input id="reserve_tablestatus{{$index+1}}"  type="checkbox" ng-model="reserve_table.status" name="status"  ng-true-value="1" ng-false-value="0">
+										<span data-on="Yes" data-off="No"></span>
+									</label>
+								</td>
+				
+
+								<td ng-if="!reserve_table.$$is_editing"> {{reserve_table.from_date | date:'yyyy-MM-dd'}}</td>
+								<td ng-if="reserve_table.$$is_editing">
+											<div class="dropdown">
+													<a class="dropdown-toggle" id="dropdown{{$index+1}}" role="button" data-toggle="dropdown" data-target="#"
+													href="">
+														<div class="input-group">
+															<input type="text" class="form-control" ng-model="reserve_table.from_date" date-time-input="YYYY-MM-DD HH:mm">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+														</div>
+													</a>
+													<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+														<datetimepicker ng-model="reserve_table.from_date"
+																		data-datetimepicker-config="{ dropdownSelector: '#dropdown'+($index+1) }"   data-on-set-time="onTimeSet(newDate, reserve_table)" ></datetimepicker>
+													</ul>
+													
+												</div>
+								</td>-->
+								<td ng-if="!modelgrid.$$is_editing">
+									<button class="btn btn-xs btn-warning" ng-click="editrowgrid(modelgrid)"><i class="fa fa-pencil"></i> </button>
+									<button class="btn btn-xs btn-danger" ng-click="removerowgrid(modelgrid,grid)"><i class="fa fa-trash-o"></i> </button>
+									
+								</td>
+								<td ng-if="modelgrid.$$is_editing">
+									<button class="btn btn-xs btn-success" ng-click="saverowgrid(modelgrid)"><i class="fa fa-save"></i> </button>
+									<button class="btn btn-xs btn-danger" ng-click="cancelrowgrid(modelgrid)"><i class="fa fa-undo"></i> </button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div><!-- /.box-body -->
+			</div>
+		</uib-tab>
+
+    </uib-tabset>
+    </form>
+
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</div>
+<div class="modal-footer">
+<button  class="btn btn-success" type="button" ng-click="ok(model)"><i class="fa fa-save"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(model)"><i class="fa fa-ban"></i>Close</button>
+</div>

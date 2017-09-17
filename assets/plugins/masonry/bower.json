@@ -1,0 +1,33 @@
+{
+  "name": "masonry",
+  "version": "3.3.2",
+  "description": "Cascading grid layout library",
+  "main": "dist/masonry.pkgd.min.js",
+  "ignore": [
+    "examples/",
+    "test/",
+    "CONTRIBUTING.mdown",
+    "Gruntfile.js",
+    "package.json",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "http://masonry.desandro.com",
+  "authors": [
+    "David DeSandro"
+  ],
+  "keywords": [
+    "masonry",
+    "layout",
+    "outlayer"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ]
+}

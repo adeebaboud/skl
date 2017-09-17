@@ -1,0 +1,180 @@
+<div class="modal-header light-blue-bg">
+    <a class="pull-right" modal-fullscreen href="#" > </a>
+     <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="menuForm">
+    <uib-tabset class="nav-tabs-custom">
+        <uib-tab heading="Menu">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                   <div class="form-group">
+				<label for="menu_name_en">Menu Name En</label>
+				<input required="" class="form-control" ng-model="menu.menu_name_en" type="text" name="menu_name_en" id=
+                "menu_name_en">
+				<span ng-show="menuForm.menu_name_en.$dirty &amp;&amp; menuForm.menu_name_en.$invalid" class="help-inline text-red">Menu Name En Required</span>
+			    </div>
+            </div> 
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+				<label for="menu_name_ar">Menu Name Ar</label>
+				<input required="" class="form-control" ng-model="menu.menu_name_ar" type="text" name="menu_name_ar" id=
+                "menu_name_ar">
+				<span ng-show="menuForm.menu_name_ar.$dirty &amp;&amp; menuForm.menu_name_ar.$invalid" class="help-inline text-red">Menu Name Ar Required</span>
+			</div>  
+        </div>
+        </uib-tab>
+        <uib-tab heading="Menu Items">
+            <div class="">
+                <div class="box-header">
+                    <h3 class="box-title">Click on Add record to start adding items</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-info  btn-sm" ng-click="addItem()"><i class="fa fa-plus"></i> Add Menu Item</button>
+                    </div>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding with-y-secroll">
+ <uib-tabset class="nav-tabs-custom margin-zero" >
+ <uib-tab  ng-repeat="item in menu.menu_items" heading="Menu Item #{{$index}}">
+               <div class=" box box-widget"> 
+                   <div class="box-body row"> 
+                                      <div class="navbar navbar-default"> 
+                                              <div class=" navbar-form pull-left"> 
+<button ng-if="!item.$$is_editing" uib-tooltip="Edit Menu Item" class="btn  btn-sm bg-default  btn-flat" ng-click="editItem(item)"><i class="fa fa-pencil"></i>
+ Edit</button>
+<button ng-if="!item.$$is_editing" uib-tooltip="Remove Menu Item" class="btn btn-sm btn-danger btn-flat" ng-click="removeItem(item)">
+    <i class="fa fa-trash-o"></i> Delete
+</button>
+<button ng-if="item.$$is_editing" uib-tooltip="Save Menu Item" class="btn btn-sm bg-olive btn-flat " ng-click="saveItem(item)">
+    <i class="fa fa-save"></i> Save
+</button>
+<button ng-if="item.$$is_editing" uib-tooltip="Cancel Editing" class="btn btn-sm btn-danger btn-flat" ng-click="cancelItem(item)">
+    <i class="fa fa-undo"></i> Cancel
+</button>
+</div>
+												<!-- <div class=" navbar-form pull-right">
+													<button class="btn btn-sm bg-orange btn-flat" uib-tooltip="Move Item Left" ng-click="itemSortUp(item)">
+														<i class="fa fa-arrow-left"></i> Left
+													</button> 
+													<button class="btn  btn-sm bg-orange btn-flat" tooltip-placement="top-right" uib-tooltip="Move Item Right" ng-click="itemSortDown(item)">
+														<i class="fa fa-arrow-right"></i> Right
+													</button>
+
+												</div> -->
+                                      </div> 
+								<div class="row"> 
+									<div class=" col-xs-12">
+											<div class="">
+												<div class="form-group" >
+													<label for="item_name_en">Name EN</label>
+													<input id="item_name_en" type="text" ng-disabled="!item.$$is_editing" class="form-control" ng-model="item.item_name_en">
+												</div>
+												<div class="form-group" >
+													<label for="item_name_ar">Name AR</label>
+													<input id="item_name_ar" type="text" ng-disabled="!item.$$is_editing" class="form-control" ng-model="item.item_name_ar">
+												</div>
+												<div class="form-group" >
+													<label for="link_type">Link Type</label>
+													<select name="link_type" id="link_type" ng-disabled="!item.$$is_editing" class="form-control" ng-model="item.link_type" ng-change="getData(item.link_type)">
+														<option value="page">Page </option>
+														<option value="section">Section </option>
+														<option value="link">Link </option>
+													</select>
+												</div>
+												<div class="form-group" >
+													<label for="icon">Icon</label> 
+													<ui-select id="icon"  ng-disabled="!item.$$is_editing" ng-model="item.icon" theme="bootstrap" reset-search-input="false" >
+														<ui-select-choices class="ui-select-choices" 
+																			repeat="icon in icons" 
+																			refresh="searchIcons($select.search)"
+																		   refresh-delay="0">
+															<div><i class="fa fa-{{icon}}" ></i> {{icon}}</div>
+														</ui-select-choices>
+														<ui-select-match class="ui-select-match" placeholder="Select Icon"><i class="fa fa-{{$select.selected}}"></i> {{$select.selected}}</ui-select-match>
+													</ui-select>
+												</div>
+												<div class="form-group " ng-show="item.link_type=='section' ">
+													<label for="section_id">Sections</label>
+													<ui-select id="section_id"  ng-disabled="!item.$$is_editing" ng-model="item.link_value" theme="bootstrap" reset-search-input="false" >
+														<ui-select-choices class="ui-select-choices" repeat="section.section_slug as section in sections"
+																		   refresh="searchSections($select.search)"
+																		   refresh-delay="0">
+															<div ng-bind-html="section.section_title_en + ' | ' + section.section_title_ar"></div>
+														</ui-select-choices>
+														<ui-select-match class="ui-select-match" placeholder="Select a Sections">{{$select.selected.section_title_en}} | {{$select.selected.section_title_ar}}</ui-select-match>
+													</ui-select>
+													
+												</div>
+												
+												<div class="form-group " ng-show=" item.link_type=='page' ">
+													<label for="section_id">Sections</label>
+													<ui-select id="section_id" ng-model="item.section_id"   on-select="GetPages($select.selected )" theme="bootstrap" reset-search-input="false" >
+														<ui-select-choices class="ui-select-choices" repeat="section.section_id as section in sections"
+																		   refresh="searchSections($select.search)"
+																		   refresh-delay="0">
+															<div ng-bind-html="section.section_title_en + ' | ' + section.section_title_ar"></div>
+														</ui-select-choices>
+														<ui-select-match class="ui-select-match" placeholder="Select a Sections">{{$select.selected.section_title_en}} | {{$select.selected.section_title_ar}}</ui-select-match>
+													</ui-select>
+													
+												</div>
+												<div class="form-group " ng-show=" item.link_type=='page'">
+													<label for="page_id">Pages</label>
+													<ui-select id="page_id"    ng-model="item.link_value"  theme="bootstrap"  on-select="setSection($select.selected ,item)" reset-search-input="false" >
+														<ui-select-choices class="ui-select-choices" repeat="page.page_slug as page in pages"
+																		  refresh="searchPages($select.search,item.section_id)"
+																		   refresh-delay="0">
+															<div ng-bind-html="page.page_title_en + ' | ' + page.page_title_ar"></div>
+														</ui-select-choices>
+														<ui-select-match class="ui-select-match" placeholder="Select a Page">{{$select.selected.page_title_en}} | {{$select.selected.page_title_ar}}</ui-select-match>
+													</ui-select>
+													
+												</div>
+												
+												<div class="form-group" ng-show=" item.link_type=='link'">
+													<label for="url_value">Link Value</label>
+													<input id="url_value" type="text"   class="form-control" ng-model="item.link_value">
+												</div>
+												
+												<div class="form-group ">
+													<label for="submenu">Sub Menu</label>
+													 <select id="submenu" ng-model="item.submenu_id" class="form-control" ng-options="subMenu.menu_id as subMenu.menu_name_en for subMenu in menus ">
+															<option></option>
+													 </select>
+													
+												</div>
+
+												<div class="form-group" >
+													<label for="item_sort">Sort</label>
+													<input id="item_sort" type="number"  class="form-control" ng-model="item.item_sort">
+												</div>
+
+                                              
+											  
+											</div>
+										</div>
+								</div> 
+                
+                   </div>
+               </div>
+</uib-tab>
+</uib-tabset>
+
+                </div><!-- /.box-body -->
+            </div>
+        </uib-tab>
+    </uib-tabset>
+    </form>
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(menu)"><i class="fa fa-ban"></i>Cancel</button>
+</div>
+ 

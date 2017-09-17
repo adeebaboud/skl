@@ -1,0 +1,133 @@
+
+
+<section class="content-header">
+    <h1>
+        {{title}}
+        <small>{{title}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="#">Dashboard</li>
+		<li class="active">{{title}}</li>
+    </ol>
+</section>
+
+<section class="content overlay-wrapper">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <button type="button" ng-click="add()" class="btn btn-primary navbar-btn"><i class="fa fa-plus"></i> Add Page</button>
+            <button type="button" ng-show="!is_section" ng-click="toggleSearchBox()" class="btn btn-success navbar-btn"><i class="fa fa-search"></i> Search</button>
+
+        </div>
+    </nav>
+    <div class="search-form" ng-show="showSearch" >
+        <form class="box box-widget">
+            <div class="row box-body">
+
+                    <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                        <label for="search_name">Name</label>
+                        <input type="text" class="form-control" ng-change="doSearch();" ng-model="search.page_title" id="search_name">
+                    </div>
+
+                   <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                        <label for="search_section">sections</label>
+                        <select id="search_section"   ng-change="doSearch();" class="form-control" ng-options="section.section_id as section.section_title_ar for section in sections" ng-model="search.section_id" name="page_section">
+                            <option value=""> </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                        <label for="search_description">Description</label>
+                        <input type="text" class="form-control v-resize" ng-change="doSearch();" ng-model="search.page_description" id="search_description">
+                    </div>
+
+
+
+
+            </div>
+        </form>
+    </div>
+	<div class="row"> 
+        <div class="col-md-3"> 
+            <div class="tree-wrapper">
+                <div class="tree-container box-body">
+                    <tree class="expand" selected-item-changed="selectedSectionChanged" list="sectionsTree" child="sections" display="section_title_en">
+
+                    </tree>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div ui-grid="gridOptions" ui-grid-pagination ui-grid-pinning class="grid"></div>
+        </div> 
+    </div>
+	<div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</section>
+
+<div>
+    <script type="text/ng-template" id="DeleteDialog.html">
+        <div class="modal-header red-bg">
+            <h3 class="modal-title">Delete Confirmation</h3>
+        </div>
+
+        <div class="modal-body with-padding">
+
+				Are you sure want to delete this item ?
+
+		</div>
+
+
+        <div class="modal-footer">
+       <button class="btn btn-success" type="button" ng-click="confirm_delete()"><i class="fa fa-check"></i>Yes</button>
+            <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban"></i>No</button>
+        </div>
+    </script>
+</div>
+<style>
+ul.tree{
+    list-style:none;
+}
+tree .treeItem.hasItems:before{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f067";
+    width:20px;
+    margin-left:-20px;
+}
+tree .treeItem.hasItems.expand:before{
+     content: "\f068";
+}
+.treeItem > tree{
+    display:none;
+}
+.treeItem.expand > tree{
+    display:block;
+}
+li.treeItem{
+    min-width: 200px;
+}
+li.treeItem a{
+    padding: 3px;
+    line-height:22px;
+}
+li.treeItem.active > a {
+    background: #0078c0;
+    color: white; 
+}
+.tree-wrapper{
+    height:550px;
+
+    width:100%;
+    overflow:auto;
+    background:white;
+}
+.tree-container{
+    width:auto;
+}
+</style>
+

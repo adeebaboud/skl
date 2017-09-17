@@ -1,0 +1,52 @@
+<div class="modal-header  light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body  overlay-wrapper">
+
+
+<form name="groupForm">
+        <div class="col-md-12" ng-show="errors">
+			<div class="alert alert-danger">
+				<strong>Please Fix the Following:</strong>
+				<p ng-repeat="error in errors">{{error}}</p>
+			</div>
+		</div>
+    <uib-tabset  class="nav-tabs-custom">
+        <uib-tab heading="Groups">
+			<div class="">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-3 col-xs-12" ng-repeat="group in user_groups" >
+                                <h5 class="modal-sub-title">{{group.name}}</h5>
+                             <label  class="tgl tgl-gray">
+                                <input type="radio" name="user_group"  value="{{group.id}}" ng-model="user.group_id">
+                                <span>&nbsp;&nbsp;</span>
+                            </label>
+                        </div>
+						<div class="form-group col-md-6 col-sm-6 col-xs-12" ng-show="user.group_id == 2 || user.group_id == 3">
+							<label for="branch"><i class="fa fa-users"></i> Branch</label>
+							<select id="branch"  class="form-control" ng-options="branch.branch_id as branch.branch_name_en for branch in branches" ng-model="user.branch_id" name="branch">
+								<option value=""> </option>
+							</select>
+						</div>
+                    </div>
+
+			</div>
+        </uib-tab>
+       
+
+    </uib-tabset>
+
+
+    </form>
+<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban"></i>Cancel</button>
+</div>
+

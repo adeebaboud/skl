@@ -1,0 +1,46 @@
+
+<section class="content-header">
+<h1>
+    {{title}} <small>{{title}}</small>
+</h1>
+<ol class="breadcrumb">
+    <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+    </li>
+    <li class="#">Dashboard </li>
+	<li class="active">Sections </li>
+</ol>
+</section>
+
+<section class="content overlay-wrapper">
+    <nav class="navbar navbar-default"> 
+        <div class="container-fluid">
+            <button type="button" ng-click="add()" class="btn btn-primary navbar-btn"><i class="fa fa-plus"></i> Add Section</button>
+        </div>
+    </nav>
+
+<div ui-grid="gridOptions" ui-grid-pagination ui-grid-tree-view ui-grid-pinning class="grid"></div>
+ <div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</section>
+<div>
+    <script type="text/ng-template" id="DeleteDialog.html">
+        <div class="modal-header red-bg">
+            <h3 class="modal-title">Delete Confirmation</h3>
+        </div>
+
+        <div class="modal-body with-padding">
+
+				Are you sure want to delete this item ?
+
+
+
+		</div>
+
+          <div class="modal-footer">
+            <button class="btn btn-success" type="button" ng-click="confirm_delete()"><i class="fa fa-check"></i>Yes</button>
+            <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban"></i>No</button>
+        </div>
+    </script>
+</div>

@@ -1,0 +1,86 @@
+<div class="modal-header  light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body  overlay-wrapper">
+
+
+<form name="userForm">
+        <div class="col-md-12" ng-show="errors">
+			<div class="alert alert-danger">
+				<strong>Please Fix the Following:</strong>
+				<p ng-repeat="error in errors">{{error}}</p>
+			</div>
+		</div>
+    <uib-tabset  class="nav-tabs-custom">
+        <uib-tab heading="User">
+         <div class="row">
+
+
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="first_name"><i class="fa fa-user"></i>First Name</label>
+                <input id="first_name" required="required" class="form-control" ng-model="user.first_name" type="text"  name="first_name">
+                <span ng-show= "userForm.first_name.$dirty && userForm.first_name.$invalid"  class="help-inline">First Name Required</span>
+            </div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="last_name"><i class="fa fa-user"></i> Last Name</label>
+                <input id="last_name"  class="form-control" ng-model="user.last_name" type="text"  name="last_name">
+            </div>
+			  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="group"><i class="fa fa-users"></i> Group</label>
+                <select id="group" disabled  required="required"  class="form-control" ng-options="group.id as group.name for group in groups" ng-model="user.group_id" name="group_id">
+                    <option value=""> </option>
+                </select>
+            </div>
+			
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="username"><i class="fa fa-user-secret"></i> Username</label>
+                <input id="username" required="required" class="form-control" ng-model="user.username" type="text"  name="username">
+                <span ng-show= "userForm.username.$dirty && userForm.username.$invalid"  class="help-inline">Username Required</span>
+            </div>
+			
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="password"><i class="fa fa-unlock-alt"></i> Password</label>
+                <input id="password" required="required" class="form-control" ng-model="user.password" type="text"  name="password">
+                <span ng-show=  "userForm.password.$dirty && userForm.password.$invalid"  class="help-inline">Password Required</span>
+            </div>
+            
+			
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="email"><i class="fa fa-envelope"></i>Email</label>
+                <input id="email" required="required" class="form-control" ng-model="user.email" type="email"  name="email">
+                <span ng-show=  "userForm.email.$dirty && userForm.email.$invalid"  class="help-inline">Email Required</span>
+            </div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="phone"><i class="fa fa-phone"></i>Phone</label>
+                <input id="phone" class="form-control" ng-model="user.phone" type="text"  name="phone">
+            </div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="company"><i class="fa fa-building"></i>Company</label>
+                <input id="company" class="form-control" ng-model="user.company" type="text"  name="company">
+            </div>
+			<div class="form-group col-md-6 col-sm-6 col-xs-12">
+			<h5 class="modal-sub-title"><i class="fa fa-check-circle-o"></i>Is Active ? </h5>
+			<label class="tgl" for="active">
+               <input id="active"  type="checkbox" ng-model="user.active" name="active"  ng-true-value="'1'" ng-false-value="'0'">
+                <span data-on="Enabled" data-off="Disabled"></span>
+              </label>
+			</div>
+        </div>
+        </uib-tab>
+       
+
+    </uib-tabset>
+
+
+    </form>
+<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()">Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(user)">Cancel</button>
+</div>
+

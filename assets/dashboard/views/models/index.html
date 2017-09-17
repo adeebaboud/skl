@@ -1,0 +1,67 @@
+
+<section class="content-header">
+<h1>
+    {{title}} <small>{{title}}</small>
+</h1>
+<ol class="breadcrumb">
+    <li>
+        <a href="#"><i class="fa fa-dashboard"></i> Home</a>
+    </li>
+    <li class="#">Dashboard </li>
+	<li class="active">{{title}} </li>
+</ol>
+</section>
+
+<section class="content overlay-wrapper">
+
+    <nav ng-if="allowadd||issearch||allowrefresh" class="navbar navbar-default">
+        <div class="container-fluid">
+            <button ng-if="allowadd" type="button" ng-click="add()" class="btn btn-primary navbar-btn"><i class="fa fa-plus"></i> Add {{title}}</button>
+            <button ng-if="issearch" type="button" ng-click="toggleSearchBox()" class="btn btn-success navbar-btn"><i class="fa fa-search"></i> Search</button>
+            <button ng-if="allowrefresh" type="button" ng-click="refresh()" class="btn btn-warning navbar-btn"><i class="fa fa-refresh"></i> Refresh</button>
+
+        </div>
+    </nav>
+    <div ng-if="issearch"  class="search-form" ng-show="showSearch" >
+        <form class="box box-widget">
+            <div class="row box-body">
+
+                    <div ng-repeat="field in fieldssearch" class="form-group col-md-4 col-sm-6 col-xs-12">
+                        <label for="field.field">{{field.name}}</label>
+                        <input type="text" class="form-control" ng-change="doSearch();" ng-model="search[field.field]" id="field.field">
+                    </div>
+
+
+            </div>
+        </form>
+    </div>
+
+<div ui-grid="gridOptions" ui-grid-pagination ui-grid-pinning class="grid"></div>
+    <div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</section>
+<div>
+    <script type="text/ng-template" id="DeleteDialog.html">
+        <div class="modal-header red-bg">
+            <h3 class="modal-title">Delete Confirmation</h3>
+        </div>
+
+        <div class="modal-body with-padding">
+
+				Are you sure want to delete this item ?
+
+
+			<div ng-show="err">
+				<div class="alert alert-danger">
+				{{msg}}
+				</div>
+			</div>
+		</div>
+
+        <div class="modal-footer">
+             <button class="btn btn-success" type="button" ng-click="confirm_delete()"><i class="fa fa-check"></i>Yes</button>
+            <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-ban"></i>No</button>
+        </div>
+    </script>
+</div>

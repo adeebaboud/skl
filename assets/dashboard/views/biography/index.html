@@ -1,0 +1,568 @@
+<section class="content-header">
+    <h1>
+        {{title}}
+        <small>{{title}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="#">Dashboard</li>
+		<li class="active">Biography</li>
+    </ol>
+</section>
+
+<section class="content overlay-wrapper">
+
+ <form name="bioForm">
+   
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Company name</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+         <div class="control-group">
+            <label class="control-label" for="name" >Company name</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="name" id="name" value="" ng-model="biography.name">
+                
+            </div>
+        </div>
+		
+        <div class="control-group">
+            <label class="control-label" for="slogan1">Slogan English</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="slogan1" id="slogan1" value="" ng-model="biography.slogan_en"> 
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="slogan2">Slogan Arabic</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="slogan2" id="slogan2" value="" ng-model="biography.slogan_ar"> 
+            </div>
+        </div>
+		 <div class="control-group">
+            <label class="control-label" for="slogan2">Company Profile</label>
+            <div class="controls">
+                <div class="input-group">
+			   <input  class="form-control" ng-model="biography.company_profile" type="text"
+		   name="company_profile" id="company_profile" readonly>
+		   <div class="input-group-addon with-link">
+			   <a filemanager-btn="company_profile" class="" type="button"><i class="fa fa-search"></i></a>
+		   </div>
+		  </div>
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Logo</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+   <div class="form-group">
+            <label class="control-label" for="logo_en"> Logo EN</label>
+			 <div class="input-group">
+			   <input  class="form-control" ng-model="biography.logo_en" type="text"
+		   name="logo_en" id="logo_en" readonly>
+		   <div class="input-group-addon with-link">
+			   <a filemanager-btn="logo_en" class="" type="button"><i class="fa fa-search"></i></a>
+		   </div>
+		  </div>
+          
+        </div>
+
+		<div class="form-group">
+			<label for="logo_en">Logo Preview </label>
+			<img ng-src="{{biography.logo_en}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%" class="img-responsive">
+		</div>
+  </div><!-- /.box-body -->
+  
+   <div class="box-body">
+   <div class="form-group">
+            <label class="control-label" for="logo"> Logo Ar </label>
+			 <div class="input-group">
+			   <input  class="form-control" ng-model="biography.logo_ar" type="text"
+		   name="logo_ar" id="logo_ar" readonly>
+		   <div class="input-group-addon with-link">
+			   <a filemanager-btn="logo_ar" class="" type="button"><i class="fa fa-search"></i></a>
+		   </div>
+		  </div>
+          
+        </div>
+
+		<div class="form-group">
+			<label for="logo">Logo AR Preview </label>
+			<img ng-src="{{biography.logo_ar}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%" class="img-responsive">
+		</div>
+  </div><!-- /.box-body -->
+  
+</div><!-- /.box -->
+ <div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">About</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		<div class="control-group">
+            <label class="control-label" for="about_ar">About Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="about_ar" id="about_ar" rows="4"  ng-model="biography.about_ar"></textarea>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="about_en">About En</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="about_en" id="about_en" rows="4"  ng-model="biography.about_en"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="mission">Mission</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="mission_en" id="mission_en" rows="4" ng-model="biography.mission_en"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="mission_ar">Mission Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="mission_ar" id="mission_ar" rows="4" ng-model="biography.mission_ar"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="vision_en">Vision</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="vision_en" id="vision_en" rows="4" ng-model="biography.vision_en" ></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="vision_ar">Vision Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="vision_ar" id="vision_ar" rows="4" ng-model="biography.vision_ar" ></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="trademarks_en">Trademarks</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="trademarks_en" id="trademarks_en" rows="4" ng-model="biography.trademarks_en" ></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="trademarks_ar">Trademarks Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="trademarks_ar" id="trademarks_ar" rows="4" ng-model="biography.trademarks_ar" ></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="company_activity_en">company activity</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="company_activity_en" id="company_activity_en" rows="4" ng-model="biography.company_activity_en" ></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="company_activity_ar">company activity Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce name="company_activity_ar" id="company_activity_ar" rows="4" ng-model="biography.company_activity_ar" ></textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="keywords">Keywords</label>
+            <div class="controls">
+                <textarea class="form-control v-resize"   name="keywords" id="keywords" rows="4" ng-model="biography.keywords" ></textarea>
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Message</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		<div class="control-group">
+            <label class="control-label" for="message_en">Message</label>
+            <div class="controls">
+                <textarea class="form-control v-resize"  ui-tinymce  name="message_en"  rows="4" ng-model="biography.message_en"></textarea>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="message_ar">Message Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize"  ui-tinymce  name="message_ar"  rows="4" ng-model="biography.message_ar"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="values_en">Values</label>
+            <div class="controls">
+			    <textarea class="form-control v-resize" ui-tinymce  name="values_en"  rows="4" ng-model="biography.values_en"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="values_ar">Values AR</label>
+            <div class="controls">
+			    <textarea class="form-control v-resize" ui-tinymce  name="values_ar"  rows="4" ng-model="biography.values_ar"></textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="zipcode">Zipcode</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="zipcode" id="zipcode" value="" ng-model="biography.zipcode">
+
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Phones</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+   <div class="control-group">
+            <label class="control-label" for="phone1">Phone 1</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="phone1" id="phone1" value="" ng-model="biography.phone1">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="phone2">Phone 2</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="phone2" id="phone2" value="" ng-model="biography.phone2">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="phone3">Phone 3</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="phone3" id="phone3" value="" ng-model="biography.phone3">
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Mobiles</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+    <div class="control-group">
+            <label class="control-label" for="mobile1">mobile 1</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="mobile1" id="mobile1" value="" ng-model="biography.mobile1">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="mobile2">mobile 2</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="mobile2" id="mobile2" value="" ng-model="biography.mobile2">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="mobile3">mobile 3</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="mobile3" id="mobile3" value=""  ng-model="biography.mobile3">
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div>
+ <!-- /.box -->
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Email</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+   <div class="control-group">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="email" id="email" value="" ng-model="biography.email">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="website">Website</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="website" id="website" value="" ng-model="biography.website">
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Social Media</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+    <div class="control-group">
+            <label class="control-label" for="facebook">Facebook</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="facebook" id="facebook" value="" ng-model="biography.facebook">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="twitter">Twitter</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="twitter" id="twitter" value="" ng-model="biography.twitter">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="linkedin">Linkedin</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="linkedin" id="linkedin" value=""  ng-model="biography.linkedin">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="google">google</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="google" id="google" value="" ng-model="biography.google">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="youtube">youtube</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="youtube" id="youtube" value="" ng-model="biography.youtube">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="instagram">instagram</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="instagram" id="instagram" value="" ng-model="biography.instagram">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="instagram">foursquar</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="foursquar" id="foursquar" value="" ng-model="biography.foursquar">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="pinterest">pinterest</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="pinterest" id="pinterest" value="" ng-model="biography.pinterest">
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Counters</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+       <div class="clearfix">
+        <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter1_ar">Counter #1 Label Ar</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter1_ar" id="counter1_ar" value="" ng-model="biography.counter1_ar">
+            </div>
+        </div>
+        <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter1_en">Counter #1 Label En</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter1_en" id="counter1_en" value="" ng-model="biography.counter1_en">
+            </div>
+        </div>
+        <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter1">Counter #1 Value</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter1" id="counter1" value="" ng-model="biography.counter1">
+            </div>
+        </div>
+	  </div>
+      <hr>
+       <div class="clearfix">
+		   <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter2_ar">Counter #2 Label Ar</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter2_ar" id="counter2_ar" value="" ng-model="biography.counter2_ar">
+            </div>
+        </div>
+		   <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter2_en">Counter #2 Label En</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter2_en" id="counter2_en" value="" ng-model="biography.counter2_en">
+            </div>
+        </div>
+		   <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter2">Counter #2 Value</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter2" id="counter2" value="" ng-model="biography.counter2">
+            </div>
+        </div>
+	  </div>
+	  <hr>
+	  <div class="clearfix">
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter3_ar">Counter #3 Label Ar</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter3_ar" id="counter3_ar" value="" ng-model="biography.counter3_ar">
+            </div>
+        </div>
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter3_en">Counter #3 Label En</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter3_en" id="counter3_en" value="" ng-model="biography.counter3_en">
+            </div>
+        </div>
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter3">Counter #3 Value</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter3" id="counter3" value="" ng-model="biography.counter3">
+            </div>
+        </div>
+	  </div>
+	  <hr>
+	  <div class="clearfix">
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter4_ar">Counter #4 Label Ar</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter4_ar" id="counter4_ar" value="" ng-model="biography.counter4_ar">
+            </div>
+        </div>
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter1_en">Counter #4 Label En</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter4_en" id="counter4_en" value="" ng-model="biography.counter4_en">
+            </div>
+        </div>
+		  <div class="control-group col-md-4 col-sm-4 col-xs-12 p-none">
+            <label class="control-label" for="counter4">Counter #4 Value</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="counter4" id="counter4" value="" ng-model="biography.counter4">
+            </div>
+        </div>
+	  </div>	
+  </div>
+</div>
+
+       <div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Addresses</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		 <div class="control-group">
+            <label class="control-label" for="address_en">Address En</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" name="address_en"  rows="4" ng-model="biography.address_en"></textarea>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="address_ar">Address Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" name="address_ar"  rows="4" ng-model="biography.address_ar"></textarea>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="instagram">Longitude</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="longitude" id="longitude" value="" ng-model="biography.longitude">
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="instagram">Latitude</label>
+            <div class="controls">
+                <input type="text" class="form-control" name="latitude" id="latitude" value="" ng-model="biography.latitude">
+            </div>
+        </div>
+     <div class="control-group">
+            <label class="control-label" for="map">Map</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" name="map" id="map" rows="4" ng-model="biography.map"></textarea>
+            </div>
+        </div>
+		 <div class="control-group">
+            <label class="control-label" for="why_kitchen_line_en">Why Kitchen line En</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="why_kitchen_line_en" id="why_kitchen_line_en" rows="4" ng-model="biography.why_kitchen_line_en"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="why_kitchen_line_ar">Why Kitchen line Ar</label>
+            <div class="controls">
+                <textarea class="form-control v-resize" ui-tinymce  name="why_kitchen_line_ar" id="why_kitchen_line_ar" rows="4" ng-model="biography.why_kitchen_line_ar"></textarea>
+            </div>
+        </div>
+  </div><!-- /.box-body -->
+</div><!-- /.box -->
+
+
+
+    </div>
+</div>
+
+
+
+<div class="box box-solid">
+
+                <div class="box-body">
+                 <div class="row">
+                     <div class="col-md-4 col-sm-4 col-xs-12">
+                         <button class="btn btn-success btn-lg   btn-flat" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+                         <button class="btn btn-danger btn-lg   btn-flat" ng-disabled="!bioForm.$dirty" type="button" ng-click="cancel()"><i class="fa fa-undo"></i>Cancel</button>
+                     </div>
+                     <div class="col-md-8 col-sm-8 col-xs-12" ng-show="showMsg">
+                            <div class="alert alert-success alert-flat">{{done}}</div>
+                     </div>
+                 </div>
+                </div><!-- /.box-body -->
+              </div>
+
+
+
+
+
+</form>
+<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</section>

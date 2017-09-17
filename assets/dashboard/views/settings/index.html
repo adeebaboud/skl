@@ -1,0 +1,422 @@
+<section class="content-header">
+    <h1>
+        {{title}}
+        <small>{{title}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="#">Dashboard</li>
+		<li class="active">{{title}}</li>
+    </ol>
+</section>
+
+<section class="content overlay-wrapper">
+
+ <form name="bioForm">
+   
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="box box-default">
+	  <div class="box-header with-border">
+		<h3 class="box-title">Layout Options (Products)</h3>
+		<div class="box-tools pull-right">
+		  <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+		  <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+		</div><!-- /.box-tools -->
+	  </div><!-- /.box-header -->
+	  <div class="box-body">
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #1</label>
+				<div class="controls"> 
+					<ui-select id="product_id" ng-model="settings.product_1"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_2" >Product #2</label>
+				<div class="controls">
+					<ui-select id="product_id" ng-model="settings.product_2"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_3" >Product #3</label>
+				<div class="controls">
+					<ui-select id="product_id" ng-model="settings.product_3"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #4</label>
+				<div class="controls">
+				   <ui-select id="product_id" ng-model="settings.product_4"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #5</label>
+				<div class="controls">
+				   <ui-select id="product_id" ng-model="settings.product_5"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #6</label>
+				<div class="controls">
+					<ui-select id="product_id" ng-model="settings.product_6"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #7</label>
+				<div class="controls">
+					<ui-select id="product_id" ng-model="settings.product_7"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="product_1" >Product #8</label>
+				<div class="controls">
+					<ui-select id="product_id" ng-model="settings.product_8"
+							   theme="bootstrap"
+							   reset-search-input="false"
+							   on-select="">
+
+						<ui-select-choices class="ui-select-choices" repeat="product.product_id as product in products"
+										   refresh="searchProduct($select.search)"
+										   refresh-delay="0">
+							<span ng-bind-html="product.product_name_ar"></span> |  <span ng-bind-html="product.product_name_en"></span>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Product">{{$select.selected.product_name_ar}} | {{$select.selected.product_name_en}}</ui-select-match>
+					</ui-select>
+				</div>
+			</div> 
+	  </div><!-- /.box-body -->
+	</div><!-- /.box -->
+ </div>
+ 
+<div class="col-md-6 col-sm-6 col-xs-12">
+ <div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Layout Options (Boxes)</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		<div class="control-group">
+            <label class="control-label" for="box1_style" >Box#1 Title</label>
+            <div class="controls"> 
+				<input type="text" class="form-control" ng-model="settings.box1_title">
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box_1_type" >Box#1 Type</label>
+            <div class="controls"> 
+				<select class="form-control" ng-model="settings.box1_type">
+					<option value="html">HTML Content</option>
+					<option value="section">Section</option>
+				</select> 
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box1_style" >Box#1 Style</label>
+            <div class="controls"> 
+				<select id="box1_style" class="form-control" ng-model="settings.box1_style">
+					<option value="orange">Orange Box - 2 Items</option>
+					<option value="grey">Grey Box - 2 Items</option>
+					<option value="staff">Normal Box - 3 Items</option>
+				</select> 
+            </div>
+        </div>
+		<uib-tabset ng-if="settings.box1_type == 'html'">
+			<uib-tab heading="Arabic">
+				<div class="control-group" >
+					<label class="control-label" for="box1_style" >Box#1 Content 1</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box1_html1_ar"></textarea>
+					</div>
+				</div>
+				<div class="control-group"   >
+					<label class="control-label" for="box1_style" >Box#1 Content 2</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box1_html2_ar"></textarea>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab heading="English">
+				<div class="control-group" >
+					<label class="control-label" for="box1_style" >Box#1 Content 1</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box1_html1_en"></textarea>
+					</div>
+				</div>
+				<div class="control-group"  >
+					<label class="control-label" for="box1_style" >Box#1 Content 2</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box1_html2_en"></textarea>
+					</div>
+				</div>			
+			</uib-tab>
+		</uib-tabset>
+		
+		<div class="control-group"  ng-if="settings.box1_type == 'section'">
+            <label class="control-label" for="box_1_type" >Box#1 Section</label>
+            <div class="controls"> 
+				<ui-select   ng-model="settings.box1_section"
+						   theme="bootstrap"
+						   reset-search-input="false"
+						   on-select="">
+					<ui-select-choices class="ui-select-choices" repeat="section.section_id as section in sections"
+									   refresh="searchSection($select.search)"
+									   refresh-delay="0">
+						<span ng-bind-html="section.section_title_ar"></span> |  <span ng-bind-html="section.section_title_en"></span>
+					</ui-select-choices>
+					<ui-select-match class="ui-select-match" placeholder="Select a Section">{{$select.selected.section_title_ar}} | {{$select.selected.section_title_en}}</ui-select-match>
+				</ui-select>
+            </div>
+        </div> 
+  </div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+ <div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Layout Options (Boxes)</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		<div class="control-group">
+            <label class="control-label" for="box2_style" >Box#2 Title</label>
+            <div class="controls"> 
+				<input type="text" class="form-control" ng-model="settings.box2_title">
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box_1_type" >Box#2 Type</label>
+            <div class="controls"> 
+				<select class="form-control" ng-model="settings.box2_type">
+					<option value="html">HTML Content</option>
+					<option value="section">Section</option>
+				</select> 
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box2_style" >Box#2 Style</label>
+            <div class="controls"> 
+				<select id="box2_style" class="form-control" ng-model="settings.box2_style">
+					<option value="orange">Orange Box - 2 Items</option>
+					<option value="grey">Grey Box - 2 Items</option>
+					<option value="staff">Normal Box - 3 Items</option>
+				</select> 
+            </div>
+        </div>
+		<uib-tabset ng-if="settings.box2_type == 'html'">
+			<uib-tab heading="Arabic">
+				<div class="control-group"  >
+					<label class="control-label" for="box1_style" >Box#2 Content 1</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box2_html1_ar"></textarea>
+					</div>
+				</div>
+				<div class="control-group"   >
+					<label class="control-label" for="box1_style" >Box#2 Content 2</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box2_html2_ar"></textarea>
+					</div>
+				</div>
+			</uib-tab>
+			<uib-tab heading="English">
+				<div class="control-group"  >
+					<label class="control-label" for="box1_style" >Box#2 Content 1</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box2_html1_en"></textarea>
+					</div>
+				</div>
+				<div class="control-group"    >
+					<label class="control-label" for="box1_style" >Box#2 Content 2</label>
+					<div class="controls"> 
+						<textarea ui-tinymce ng-model="settings.box2_html2_en"></textarea>
+					</div>
+				</div>			
+			</uib-tab>
+		</uib-tabset>	 
+		<div class="control-group"  ng-if="settings.box2_type == 'section'">
+            <label class="control-label" for="box_1_type" >Box#2 Section</label>
+            <div class="controls"> 
+				<ui-select   ng-model="settings.box2_section"
+						   theme="bootstrap"
+						   reset-search-input="false"
+						   on-select="">
+					<ui-select-choices class="ui-select-choices" repeat="section.section_id as section in sections"
+									   refresh="searchSection($select.search)"
+									   refresh-delay="0">
+						<span ng-bind-html="section.section_title_ar"></span> |  <span ng-bind-html="section.section_title_en"></span>
+					</ui-select-choices>
+					<ui-select-match class="ui-select-match" placeholder="Select a Section">{{$select.selected.section_title_ar}} | {{$select.selected.section_title_en}}</ui-select-match>
+				</ui-select>
+            </div>
+        </div> 
+  </div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+
+ <div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Layout Options (Boxes)</h3>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+      <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+    </div><!-- /.box-tools -->
+  </div><!-- /.box-header -->
+  <div class="box-body">
+		<div class="control-group">
+            <label class="control-label" for="box3_style" >Box#3 Title</label>
+            <div class="controls"> 
+				<input type="text" class="form-control" ng-model="settings.box3_title">
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box_1_type" >Box#3 Type</label>
+            <div class="controls"> 
+				<select class="form-control" ng-model="settings.box3_type">
+					<option value="html">HTML Content</option>
+					<option value="section">Section</option>
+				</select> 
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="box3_style" >Box#3 Style</label>
+            <div class="controls"> 
+				<select id="box3_style" class="form-control" ng-model="settings.box3_style">
+					<option value="orange">Orange Box - 2 Items</option>
+					<option value="grey">Grey Box - 2 Items</option>
+					<option value="staff">Normal Box - 3 Items</option>
+				</select> 
+            </div>
+        </div>
+		<div class="control-group" ng-if="settings.box3_type == 'html'">
+            <label class="control-label" for="box3_style" >Box#3 Content 1</label>
+            <div class="controls"> 
+				<textarea ui-tinymce ng-model="settings.box3_html1"></textarea>
+            </div>
+        </div>
+		<div class="control-group"  ng-if="settings.box3_type == 'html'" >
+            <label class="control-label" for="box3_style" >Box#3 Content 2</label>
+            <div class="controls"> 
+				<textarea ui-tinymce ng-model="settings.box3_html2"></textarea>
+            </div>
+        </div>
+		<div class="control-group"  ng-if="settings.box3_type == 'section'">
+            <label class="control-label" for="box_1_type" >Box#3 Section</label>
+            <div class="controls"> 
+				<ui-select   ng-model="settings.box3_section"
+						   theme="bootstrap"
+						   reset-search-input="false"
+						   on-select="">
+					<ui-select-choices class="ui-select-choices" repeat="section.section_id as section in sections"
+									   refresh="searchSection($select.search)"
+									   refresh-delay="0">
+						<span ng-bind-html="section.section_title_ar"></span> |  <span ng-bind-html="section.section_title_en"></span>
+					</ui-select-choices>
+					<ui-select-match class="ui-select-match" placeholder="Select a Section">{{$select.selected.section_title_ar}} | {{$select.selected.section_title_en}}</ui-select-match>
+				</ui-select>
+            </div>
+        </div> 
+  </div>
+</div>
+</div>
+</div>
+<div class="box box-solid"> 
+	<div class="box-body">
+	 <div class="row">
+		 <div class="col-md-12 col-sm-12 col-xs-12">
+			 <button class="btn btn-success  btn-flat" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+			 <button class="btn btn-danger   btn-flat" ng-disabled="!bioForm.$dirty" type="button" ng-click="cancel()"><i class="fa fa-undo"></i>Cancel</button>
+		 </div>
+		 <div class="col-md-12 col-sm-12 col-xs-12" ng-show="showMsg">
+				<div class="alert alert-success alert-flat">{{done}}</div>
+		 </div>
+	 </div>
+	</div><!-- /.box-body -->
+</div>
+</form>
+<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</section>

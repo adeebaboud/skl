@@ -1,0 +1,180 @@
+<div class="modal-header light-blue-bg">
+    <a class="pull-right" modal-fullscreen href="#"> </a>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="modelForm">
+        <uib-tabset class="nav-tabs-custom">
+            <uib-tab heading="Image Gallery">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input required="" class="form-control" ng-model="model.name" type="text" name="name" id="name">
+                            <span ng-show="modelForm.name.$dirty &amp;&amp; modelForm.name.$invalid" class="help-inline text-red">Name Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="title_en">Title En</label>
+                        <input required="" class="form-control" ng-model="model.title_en" type="text" name="title_en" id="title_en">
+                        <span ng-show="modelForm.title_en.$dirty &amp;&amp; modelForm.title_en.$invalid" class="help-inline text-red">Title En Required</span>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="title_ar">Title Ar</label>
+                        <input required="" class="form-control" ng-model="model.title_ar" type="text" name="title_ar" id="title_ar">
+                        <span ng-show="modelForm.title_ar.$dirty &amp;&amp; modelForm.title_ar.$invalid" class="help-inline text-red">Title Ar Required</span>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Images">
+                <div class="">
+                    <div class="box-header">
+                        <h3 class="box-title">Click on Add record to start adding items</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-info  btn-sm" ng-click="addImage()"><i class="fa fa-plus"></i> Add Image</button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding with-y-secroll">
+                        <uib-tabset class="nav-tabs-custom margin-zero">
+                            <uib-tab ng-repeat="image in model.images" heading="Image #{{$index}}">
+                                <div class=" box box-widget">
+                                    <div class="box-body row">
+                                        <div class="navbar navbar-default">
+                                            <div class=" navbar-form pull-left">
+                                                <button ng-if="!image.$$is_editing" uib-tooltip="Edit Image" class="btn  btn-sm bg-default  btn-flat" ng-click="editImage(image)"><i class="fa fa-pencil"></i>
+                                                Edit
+                                                </button>
+                                                <button ng-if="!image.$$is_editing" uib-tooltip="Remove Image" class="btn btn-sm btn-danger btn-flat" ng-click="removeImage(image)">
+                                                    <i class="fa fa-trash-o"></i> Delete
+                                                </button>
+                                                <button ng-if="image.$$is_editing" uib-tooltip="Save Image" class="btn btn-sm bg-olive btn-flat " ng-click="saveImage(image)">
+                                                    <i class="fa fa-save"></i> Save
+                                                </button>
+                                                <button ng-if="image.$$is_editing" uib-tooltip="Cancel Editing" class="btn btn-sm btn-danger btn-flat" ng-click="cancelImage(image)">
+                                                    <i class="fa fa-undo"></i> Cancel
+                                                </button>
+                                            </div>
+                                            <div class=" navbar-form pull-right">
+                                                <button class="btn btn-sm bg-orange btn-flat" uib-tooltip="Move Image Left" ng-click="imageSortUp(image)">
+                                            <i class="fa fa-arrow-left"></i> Left
+                                        </button>
+                                                <button class="btn  btn-sm bg-orange btn-flat" tooltip-placement="top-right" uib-tooltip="Move Image Right" ng-click="imageSortDown(image)">
+                                            <i class="fa fa-arrow-right"></i> Right
+                                        </button>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-center">English</h3>
+                                                <div class="row">
+                                                    <div class=" col-xs-12">
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <label for="titile_en">Title EN</label>
+                                                                <input id="titile_en" type="text" ng-disabled="!image.$$is_editing" class="form-control" ng-model="image.title_en">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="Description">Image Description EN</label>
+                                                                <textarea ng-disabled="!image.$$is_editing" class="form-control" ng-model="image.description_en"></textarea>
+                                                            </div>
+
+                                                            <div class="form-group" ng-if="image.$$is_editing">
+                                                                <label for="Photoar">Photo EN</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control" ng-model="image.photo_en" type="text" name="photo_en" id="photo_en{{$index}}" readonly>
+                                                                    <div class="input-group-addon with-link">
+                                                                        <a filemanager-btn="photo_en{{$index}}" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" ng-if="!image.$$is_editing">
+                                                                <label for="Photoar">Photo EN</label>
+                                                                <input class="form-control" ng-model="image.photo_en" type="text" name="photo_en" id="photo_en" disabled="disabled" readonly>
+
+                                                            </div>
+                                                            <div class="from-group">
+                                                                <img src="{{image.photo_en}}" width="100%" class="img-responsive">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <h3 class="text-center">Arabic</h3>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="titile_ar">Title AR</label>
+                                                            <input id="titile_ar" type="text" ng-disabled="!image.$$is_editing" class="form-control" ng-model="image.title_ar">
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="Description">Image Description AR</label>
+                                                            <textarea ng-disabled="!image.$$is_editing" class="form-control" ng-model="image.description_ar"></textarea>
+                                                        </div>
+
+
+                                                        <div class="form-group" ng-if="image.$$is_editing">
+                                                            <label for="Photoar">Photo AR</label>
+                                                            <div class="input-group">
+                                                                <input class="form-control" ng-model="image.photo_ar" type="text" name="photo_ar" id="photo_ar{{$index}}" readonly>
+                                                                <div class="input-group-addon with-link">
+                                                                    <a filemanager-btn="photo_ar{{$index}}" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" ng-if="!image.$$is_editing">
+                                                            <label for="Photoar">Photo AR</label>
+                                                            <input class="form-control" ng-model="image.photo_ar" type="text" name="photo_ar" id="photo_ar" disabled="disabled" readonly>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <img src="{{image.photo_ar}}" class="img-responsive " width="100%">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!--
+                       <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="from-group" ng-if="!image.$$is_editing">
+                               <label for="sort">Sort</label>
+                               <div class="form-control disabled" >{{image.sort}}</div>
+                           </div>
+                           <div class="from-group"  ng-if="image.$$is_editing">
+                                   <label for="sort">Sort</label>
+                                 <input type="number" class="form-control" ng-model="image.sort">
+                           </div>
+                       </div>-->
+                                    </div>
+                                </div>
+                            </uib-tab>
+                        </uib-tabset>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </form>
+    <div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(model)"><i class="fa fa-ban"></i>Cancel</button>
+</div>

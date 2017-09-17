@@ -1,0 +1,193 @@
+<div class="modal-header light-blue-bg">
+    <a class="pull-right" modal-fullscreen href="#"> </a>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="sliderForm">
+        <uib-tabset class="nav-tabs-custom">
+            <uib-tab heading="Slider">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="slider_name">Slider Name</label>
+                            <input required="" class="form-control" ng-model="slider.slider_name" type="text" name="slider_name" id="slider_name">
+                            <span ng-show="sliderForm.slider_name.$dirty &amp;&amp; sliderForm.slider_name.$invalid" class="help-inline text-red">Slider Name Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="slider_title_en">Slider Title En</label>
+                        <input required="" class="form-control" ng-model="slider.slider_title_en" type="text" name="slider_title_en" id="slider_title_en">
+                        <span ng-show="sliderForm.slider_title_en.$dirty &amp;&amp; sliderForm.slider_title_en.$invalid" class="help-inline text-red">Slider Title En Required</span>
+                    </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="slider_title_ar">Slider Title Ar</label>
+                        <input required="" class="form-control" ng-model="slider.slider_title_ar" type="text" name="slider_title_ar" id="slider_title_ar">
+                        <span ng-show="sliderForm.slider_title_ar.$dirty &amp;&amp; sliderForm.slider_title_ar.$invalid" class="help-inline text-red">Slider Title Ar Required</span>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Slides">
+                <div class="">
+                    <div class="box-header">
+                        <h3 class="box-title">Click on Add record to start adding items</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-info  btn-sm" ng-click="addSlide()"><i class="fa fa-plus"></i> Add Slide</button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding with-y-secroll">
+                        <uib-tabset class="nav-tabs-custom margin-zero">
+                            <uib-tab ng-repeat="slide in slider.slides" heading="Slide #{{$index}}">
+                                <div class=" box box-widget">
+                                    <div class="box-body row">
+                                        <div class="navbar navbar-default">
+                                            <div class=" navbar-form pull-left">
+                                                <button ng-if="!slide.$$is_editing" uib-tooltip="Edit Slide" class="btn  btn-sm bg-default  btn-flat" ng-click="editSlide(slide)"><i class="fa fa-pencil"></i>
+                                                                    Edit</button>
+                                                <button ng-if="!slide.$$is_editing" uib-tooltip="Remove Slide" class="btn btn-sm btn-danger btn-flat" ng-click="removeSlide(slide)">
+                                                    <i class="fa fa-trash-o"></i> Delete
+                                                </button>
+                                                <button ng-if="slide.$$is_editing" uib-tooltip="Save Slide" class="btn btn-sm bg-olive btn-flat " ng-click="saveSlide(slide)">
+                                                        <i class="fa fa-save"></i> Save
+                                                    </button>
+                                                <button ng-if="slide.$$is_editing" uib-tooltip="Cancel Editing" class="btn btn-sm btn-danger btn-flat" ng-click="cancelSlide(slide)">
+                                                    <i class="fa fa-undo"></i> Cancel
+                                                </button>
+                                            </div>
+                                            <div class=" navbar-form pull-right">
+                                                <button class="btn btn-sm bg-orange btn-flat" uib-tooltip="Move Slide Left" ng-click="slideSortUp(slide)">
+                                                        <i class="fa fa-arrow-left"></i> Left
+                                                    </button>
+                                                <button class="btn  btn-sm bg-orange btn-flat" tooltip-placement="top-right" uib-tooltip="Move Slide Right" ng-click="slideSortDown(slide)">
+                                                                <i class="fa fa-arrow-right"></i> Right
+                                                            </button>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h3 class="text-center">English</h3>
+                                                <div class="row">
+                                                    <div class=" col-xs-12">
+                                                        <div class="">
+                                                            <div class="form-group">
+                                                                <label for="titile_en">Title EN</label>
+                                                                <input id="titile_en" type="text" ng-disabled="!slide.$$is_editing" class="form-control" ng-model="slide.slide_title_en">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                                <label for="Description">Slide Description EN</label>
+                                                                <textarea ng-disabled="!slide.$$is_editing" class="form-control" ng-model="slide.slide_description_en"></textarea>
+                                                            </div>
+
+                                                            <div class="form-group" ng-if="slide.$$is_editing">
+                                                                <label for="Photoar">Photo EN</label>
+                                                                <div class="input-group">
+                                                                    <input class="form-control" ng-model="slide.slide_photo_en" type="text" name="slide_photo_en" id="slide_photo_en{{$index}}"
+                                                                        readonly>
+                                                                    <div class="input-group-addon with-link">
+                                                                        <a filemanager-btn="slide_photo_en{{$index}}" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group" ng-if="!slide.$$is_editing">
+                                                                <label for="Photoar">Photo EN</label>
+                                                                <input class="form-control" ng-model="slide.slide_photo_en" type="text" name="slide_photo_en" id="slide_photo_en" disabled="disabled"
+                                                                    readonly>
+
+                                                            </div>
+                                                            <div class="from-group">
+                                                                <img src="{{slide.slide_photo_en}}" width="100%" class="img-responsive">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <h3 class="text-center">Arabic</h3>
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for="titile_ar">Title AR</label>
+                                                            <input id="titile_ar" type="text" ng-disabled="!slide.$$is_editing" class="form-control" ng-model="slide.slide_title_ar">
+                                                        </div>
+                                                        <div class="form-group ">
+                                                            <label for="Description">Slide Description AR</label>
+                                                            <textarea ng-disabled="!slide.$$is_editing" class="form-control" ng-model="slide.slide_description_ar"></textarea>
+                                                        </div>
+
+
+                                                        <div class="form-group" ng-if="slide.$$is_editing">
+                                                            <label for="Photoar">Photo AR</label>
+                                                            <div class="input-group">
+                                                                <input class="form-control" ng-model="slide.slide_photo_ar" type="text" name="slide_photo_ar" id="slide_photo_ar{{$index}}"
+                                                                    readonly>
+                                                                <div class="input-group-addon with-link">
+                                                                    <a filemanager-btn="slide_photo_ar{{$index}}" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" ng-if="!slide.$$is_editing">
+                                                            <label for="Photoar">Photo AR</label>
+                                                            <input class="form-control" ng-model="slide.slide_photo_ar" type="text" name="slide_photo_ar" id="slide_photo_ar" disabled="disabled"
+                                                                readonly>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <img src="{{slide.slide_photo_ar}}" class="img-responsive " width="100%">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="from-group" ng-if="!slide.$$is_editing">
+                                                <label for="slide_link">slide link</label>
+                                                <div class="form-control disabled" >{{slide.slide_link}}</div>
+                                            </div>
+                                            <div class="from-group"  ng-if="slide.$$is_editing">
+                                                    <label for="slide_link">slide link</label>
+                                                  <input type="text" class="form-control" ng-model="slide.slide_link">
+                                            </div>
+                                        </div>
+                                        <!--
+                       <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="from-group" ng-if="!slide.$$is_editing">
+                               <label for="sort">Sort</label>
+                               <div class="form-control disabled" >{{slide.slide_sort}}</div>
+                           </div>
+                           <div class="from-group"  ng-if="slide.$$is_editing">
+                                   <label for="sort">Sort</label>
+                                 <input type="number" class="form-control" ng-model="slide.slide_sort">
+                           </div>
+                       </div>-->
+                                    </div>
+                                </div>
+                            </uib-tab>
+                        </uib-tabset>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </form>
+    <div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(slider)"><i class="fa fa-ban"></i>Cancel</button>
+</div>

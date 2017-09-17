@@ -1,0 +1,30 @@
+body
+{
+	font-size:13px;
+}
+.label_text
+{
+	font-weight:bold;
+	float:left;
+
+}
+.label_text:after
+{
+	content:" : ";
+}
+.table
+{
+	width:100%;
+	font-size:13px;
+	border-spacing: 0 !important;
+}
+.table th, .table td
+{
+	border:1px solid #979797;
+	text-align:center;
+	
+}
+
+.hide-print{
+	display:none;
+}

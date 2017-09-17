@@ -1,0 +1,231 @@
+<div class="modal-header light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">{{title}}</h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="productForm">
+        <uib-tabset class="nav-tabs-custom">
+            <uib-tab heading="Product Details">
+                <div class="row">
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12" >
+                        <!-- -->
+                       <label for="category_id"> Category</label>
+                       <ui-select id="category_id" ng-model="product.category_id" theme="bootstrap" reset-search-input="false" 
+                       >
+                           <ui-select-choices class="ui-select-choices" repeat="product.category_id as product in categories"
+                                           refresh="searchCategories($select.search)"
+                                           refresh-delay="0">
+                               <div ng-bind-html="product.category_name_en + ' ' + product.category_name_ar"></div>
+                           </ui-select-choices>
+                           <ui-select-match class="ui-select-match" placeholder="Select a Category">{{$select.selected.category_name_en}} {{$select.selected.category_name_ar}}</ui-select-match>
+                       </ui-select>
+                       
+                   </div>
+                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                        <label for="product_price">Product Price</label>
+                        <input required class="form-control" ng-model="product.product_price" type="number" name="product_price" id="product_price">
+                        <span ng-show="productForm.product_price.$dirty && productForm.product_price.$invalid" class="help-inline text-red">Product Price Required</span>
+                    </div>
+
+					 
+
+                </div>
+            </uib-tab>
+            <uib-tab heading="English">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+                        <div class="form-group ">
+                            <label for="product_name_en">Product Name En</label>
+                            <input required class="form-control" ng-model="product.product_name_en" type="text" name="product_name_en" id="product_name_en">
+                            <span ng-show="productForm.product_name_en.$dirty && productForm.product_name_en.$invalid" class="help-inline text-red">Product Name En Required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_description_en">Product Description En</label>
+                            <textarea required rows="3" class="form-control v-resize" name="product_description_en" id="product_description_en" ng-model="product.product_description_en"></textarea>
+                            <span ng-show="productForm.product_description_en.$dirty && productForm.product_description_en.$invalid" class="help-inline text-red">Product Description En Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="product_image_en">Upload Product Image En</label>
+                            <div class="input-group">
+                                <input required class="form-control" ng-model="product.product_image_en" type="text" name="product_image_en" id="product_image_en" readonly>
+                                <div class="input-group-addon with-link"><a filemanager-btn="product_image_en" class="" type="button"><i class="fa fa-search"></i></a></div>
+                            </div>
+                            <span ng-show="productForm.product_image_en.$dirty && productForm.product_image_en.$invalid" class="help-inline text-red ">Product Image En Required</span>
+                        </div>
+                        <div class="form-group ">
+                            <label for="product_image_en">Image Preview En</label>
+                            <img ng-src="{{product.product_image_en}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%"class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Arabic">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group ">
+                            <label for="product_name_ar">Product Name Ar</label>
+                            <input required class="form-control" ng-model="product.product_name_ar" type="text" name="product_name_ar" id="product_name_ar">
+                            <span ng-show="productForm.product_name_ar.$dirty && productForm.product_name_ar.$invalid" class="help-inline text-red">Product Name Ar Required</span>
+                        </div>
+                        <div class="form-group ">
+                            <label for="product_description_ar">Product Description Ar</label>
+                            <textarea required rows="3" class="form-control v-resize" name="product_description_ar" id="product_description_ar" ng-model="product.product_description_ar"></textarea>
+                            <span ng-show="productForm.product_description_ar.$dirty && productForm.product_description_ar.$invalid" class="help-inline text-red">Product Description Ar Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="product_image_ar">Upload Product Image Ar</label>
+                            <div class="input-group">
+                                <input required class="form-control" ng-model="product.product_image_ar" type="text" name="product_image_ar" id="product_image_ar" readonly>
+                                <div class="input-group-addon with-link">
+                                    <a filemanager-btn="product_image_ar" class="" type="button"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <span ng-show="productForm.product_image_ar.$dirty && productForm.product_image_ar.$invalid" class="help-inline text-red">Product Image Ar Required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_image_ar">Image Preview Ar</label>
+                            <img ng-src="{{product.product_image_ar}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Images">
+                
+                
+                                <div class="">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Click on Add record to start adding items</h3>
+                                        <div class="box-tools">
+                                            <button class="btn btn-primary" ng-click="addProduct_image()"><i class="fa fa-plus"></i> Add Record</button>
+                                        </div>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                        <table class="table">
+                                            <thead>
+                                            <tr >
+                                         
+                                                <td>title en</td>
+                                                <td>title ar</td>
+                                                <td>description en</td>
+                                                <td>description ar</td>
+                                                <td>photo en</td>
+                                                <td>photo ar</td>
+                                                <td>sort</td>
+                                                <td> Actions</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="product_image in product.product_images">
+                                                    <td  ng-if="!product_image.$$is_editing">{{product_image.title_en}}</td>
+                                                    <td  ng-if="product_image.$$is_editing">
+                                                        <input type="text" class="form-control" ng-model="product_image.title_en" >
+                                                    </td>
+                                                    <td  ng-if="!product_image.$$is_editing">{{product_image.title_ar}}</td>
+                                                    <td  ng-if="product_image.$$is_editing">
+                                                        <input type="text" class="form-control" ng-model="product_image.title_ar" >
+                                                    </td>
+                                                    <td  ng-if="!product_image.$$is_editing">{{product_image.description_en}}</td>
+                                                    <td  ng-if="product_image.$$is_editing">
+                                                        <input type="text" class="form-control" ng-model="product_image.description_en" >
+                                                    </td>
+                                                    <td  ng-if="!product_image.$$is_editing">{{product_image.description_ar}}</td>
+                                                    <td  ng-if="product_image.$$is_editing">
+                                                        <input type="text" class="form-control" ng-model="product_image.description_ar" >
+                                                    </td>
+                
+                                                     
+                                                    <td   >
+                                                            <div   class="row">
+                                                                    
+                                                                <div  ng-if="product_image.$$is_editing" class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                                    <label for="photo_en">Photo en</label>
+                                                                    <div class="input-group">
+                                                                        <input required class="form-control" ng-model="product_image.photo_en" type="text"
+                                                                            name="photo_en" id="photo_en" readonly>
+                                                                        <div class="input-group-addon with-link">
+                                                                            <a filemanager-btn="photo_en" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div  class="form-group col-md-12 col-sm-12 col-xs-12">
+                        
+                                                                    <div class="form-group">
+                                                                        <label for="photo_en">Image Preview </label>
+                                                                        <img ng-src="{{product_image.photo_en}}" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMvaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTU3NzIsIDIwMTQvMDEvMTMtMTk6NDQ6MDAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE0IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowOUIxMjQ2M0Q1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowOUIxMjQ2NEQ1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA5QjEyNDYxRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA5QjEyNDYyRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgID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" width="100%" class="img-responsive">
+                                                                    </div>
+                                                                </div>
+                        
+                                                            </div>
+                                                    </td>
+                
+                
+                                                    <td   >
+                                                            <div   class="row">
+                                                                    
+                                                                <div  ng-if="product_image.$$is_editing" class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                                    <label for="photo_ar">Photo ar</label>
+                                                                    <div class="input-group">
+                                                                        <input required class="form-control" ng-model="product_image.photo_ar" type="text"
+                                                                            name="photo_ar" id="photo_ar" readonly>
+                                                                        <div class="input-group-addon with-link">
+                                                                            <a filemanager-btn="photo_ar" class="" type="button"><i class="fa fa-search"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div  class="form-group col-md-12 col-sm-12 col-xs-12">
+                        
+                                                                    <div class="form-group">
+                                                                        <label for="photo_ar">Image Preview </label>
+                                                                        <img ng-src="{{product_image.photo_ar}}" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMvaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAyMSA3OS4xNTU3NzIsIDIwMTQvMDEvMTMtMTk6NDQ6MDAgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE0IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowOUIxMjQ2M0Q1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowOUIxMjQ2NEQ1OTMxMUU1OUIzREI5NzgyMEMwMUM2RCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjA5QjEyNDYxRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjA5QjEyNDYyRDU5MzExRTU5QjNEQjk3ODIwQzAxQzZEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgID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" width="100%" class="img-responsive">
+                                                                    </div>
+                                                                </div>
+                        
+                                                            </div>
+                                                    </td>
+                
+                 
+                
+                
+                                                <td ng-if="!product_image.$$is_editing">{{product_image.sort}}</td>
+                                                <td ng-if="product_image.$$is_editing">
+                                                    <div class="" ng-if="product_image.$$showOptions">
+                                                    </div>
+                                                    <input type="number" class="form-control" ng-model="product_image.sort">
+                                                </td>
+                
+                                                <td ng-if="!product_image.$$is_editing">
+                                                    <button class="btn btn-xs btn-warning" ng-click="editProduct_image(product_image)"><i class="fa fa-pencil"></i> </button>
+                                                  
+                                                    <button class="btn btn-xs btn-danger" ng-click="removeProduct_image(product_image)"><i class="fa fa-trash-o"></i> </button>
+                                                </td>
+                                                <td ng-if="product_image.$$is_editing">
+                                                    <button class="btn btn-xs btn-success" ng-click="saveProduct_image(product_image)"><i class="fa fa-save"></i> </button>
+                                                    <button class="btn btn-xs btn-danger" ng-click="cancelProduct_image(product_image)"><i class="fa fa-undo"></i> </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                </div>
+                            </uib-tab>
+        </uib-tabset>
+    </form>
+
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(product)"><i class="fa fa-ban"></i>Cancel</button>
+</div>

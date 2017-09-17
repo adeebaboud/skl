@@ -1,0 +1,259 @@
+<div class="modal-header light-blue-bg">
+    <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">{{title}}</h3>
+
+
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">{{error}}</p>
+        </div>
+    </div>
+    <form name="pageForm">
+    <uib-tabset class="nav-tabs-custom">
+        <uib-tab heading="Page Details">
+                   <div class="row">
+               <!--  <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                   <div class="form-group">
+					<label for="category_id">Section</label>
+                    <select ng-disabled="is_section" ng-options="section.section_id as (section.section_title_en + ' | '  + section.section_title_ar) for section in sections" required class="form-control" ng-model="page.section_id"  name="section_id"
+                           id="section_id">
+                        </select>
+                         <span ng-show="pageForm.section_id.$dirty && pageForm.section_id.$invalid"
+                          class="help-inline text-red">Section Id Required</span>
+                   </div>
+                </div> -->
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+					<label for="section_id">Section</label>
+					<!--<ui-select id="section_id" ng-model="page.section_id" theme="bootstrap" reset-search-input="false" on-select="init_values($select.selected );">
+						<ui-select-choices class="ui-select-choices" repeat="section.section_id as section in sections"
+										   refresh="searchSections($select.search)"
+										   refresh-delay="0">
+							<div ng-bind-html="section.section_title_en + ' | ' + section.section_title_ar"></div>
+						</ui-select-choices>
+						<ui-select-match class="ui-select-match" placeholder="Select a Sections">{{$select.selected.section_title_en}} | {{$select.selected.section_title_ar}}</ui-select-match>
+					</ui-select>
+					<span ng-show="pageForm.section_id.$dirty && pageForm.section_id.$invalid" class="help-inline">Section Required</span>-->
+                    <input type="text" class="form-control" readonly ng-model="section.section_title_en" >
+				</div>
+			
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+					<div class="form-group">
+						<label for="page_image">Page Slug</label>
+						<input required class="form-control" ng-model="page.page_slug" type="text"
+                       name="page_slug" id="page_slug" >
+
+                         <span ng-show="pageForm.page_slug.$dirty && pageForm.page_slug.$invalid"
+                          class="help-inline text-red">Page Slug Required</span>
+					</div>
+
+				</div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                    <h5 class="modal-sub-title"><i class="fa fa-check-circle-o"></i>Is Searchable ? </h5>
+                    <label class="tgl" for="is_searchable">
+                        <input id="is_searchable"  type="checkbox" ng-model="page.is_searchable" name="is_searchable"  ng-true-value="1" ng-false-value="0">
+                        <span data-on="Yes" data-off="No"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="page_layout"> Page Layout </label> 
+                        <select id="page_layout" class="form-control"  ng-model="page.page_layout" ng-options="layout.name as layout.name for layout in layouts" name="is_searchable" >
+                                <option></option>
+                        </select> 
+                    </div>
+                </div>  
+                <div class="form-group col-md-6 col-sm-6 col-xs-12" >
+					<label for="date">Date</label>
+                
+					 <div class="dropdown">
+						<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#"
+						   href="">
+							<div class="input-group">
+								<input type="text" class="form-control" ng-model="page.date" date-time-input="YYYY-MM-DD HH:mm">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							</div>
+						</a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+							<datetimepicker ng-model="page.date"
+											data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"   data-on-set-time="onTimeSet(newDate, oldDate)"></datetimepicker>
+						</ul>
+						
+					</div>
+				</div>
+
+            </div>  
+        </uib-tab>
+        <uib-tab heading="English">
+
+           <div class="row">
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="page_title_en">Page Title En</label>
+                <input required class="form-control" ng-model="page.page_title_en" type="text"
+                       name="page_title_en" id="page_title_en">
+                    <span ng-show="pageForm.page_title_en.$dirty && pageForm.page_title_en.$invalid"
+                          class="help-inline text-red">Page Title En Required</span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                 <label for="page_subtitle_en">Page SubTitle En</label>
+                <input required class="form-control" ng-model="page.page_subtitle_en" type="text"
+                       name="page_subtitle_en" id="page_subtitle_en">
+                    <span ng-show="pageForm.page_subtitle_en.$dirty && pageForm.page_subtitle_en.$invalid"
+                          class="help-inline text-red">Page SubTitle En Required</span>
+            </div>
+            </div>
+			<div class="row">
+			 <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <label for="page_description_en">Page Description En</label>
+                    <textarea rows="3" class="form-control v-resize" name="page_description_en"
+                              id="page_description_en" ng-model="page.page_description_en"></textarea>
+                    
+            </div>
+			</div>
+			<div class="row">
+				 <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <label for="page_content_en">Page Content En</label>
+                    <textarea required rows="6" class="form-control v-resize " ui-tinymce name="page_content_en"
+                              id="page_content_en" ng-model="page.page_content_en"></textarea>
+                    <span ng-show="pageForm.page_content_en.$dirty && pageForm.page_content_en.$invalid"
+                          class="help-inline text-red">Page Content En Required</span>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+				  <label for="page_image_en">Page Image En</label>
+				  <div class="input-group">
+					   <input required class="form-control" ng-model="page.page_image_en" type="text"
+				   name="page_image_en" id="page_image_en" readonly>
+				   <div class="input-group-addon with-link">
+					   <a filemanager-btn="page_image_en" class="" type="button"><i class="fa fa-search"></i></a>
+				   </div>
+				  </div>
+					 <span ng-show="pageForm.page_image_en.$dirty && pageForm.page_image_en.$invalid"
+					  class="help-inline text-red">Page Image En Required</span>
+				</div>
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+					<div class="form-group">
+						<label for="page_image_en">Image Preview </label>
+						<img ng-src="{{page.page_image_en}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%" class="img-responsive">
+					</div>
+				</div>
+			</div>
+
+        </uib-tab>
+        <uib-tab heading="Arabic">
+           <div class="row">
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <label for="page_title_ar">Page Title Ar</label>
+                <input required class="form-control" ng-model="page.page_title_ar" type="text"
+                       name="page_title_ar" id="page_title_ar">
+                    <span ng-show="pageForm.page_title_ar.$dirty && pageForm.page_title_ar.$invalid"
+                          class="help-inline text-red">Page Title Ar Required</span>
+            </div>
+
+             <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                 <label for="page_subtitle_ar">Page SubTitle Ar</label>
+                <input required class="form-control" ng-model="page.page_subtitle_ar" type="text"
+                       name="page_subtitle_ar" id="page_subtitle_ar">
+                    <span ng-show="pageForm.page_subtitle_ar.$dirty && pageForm.page_subtitle_ar.$invalid"
+                          class="help-inline text-red">Page SubTitle Ar Required</span>
+            </div>
+            </div>
+			<div class="row">
+				<div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <label for="page_description_ar">Page Description Ar</label>
+                    <textarea  rows="3" class="form-control v-resize"  name="page_description_ar"
+                              id="page_description_ar" ng-model="page.page_description_ar"></textarea>
+                    
+				</div>
+			</div>
+			<div class="row">
+				 <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <label for="page_content_ar">Page Content Ar</label>
+                    <textarea ui-tinymce required rows="6" class="form-control v-resize" name="page_content_ar"
+                              id="page_content_ar" ng-model="page.page_content_ar"></textarea>
+                    <span ng-show="pageForm.page_content_ar.$dirty && pageForm.page_content_ar.$invalid"
+                          class="help-inline text-red">Page Content Ar Required</span>
+				</div>
+			</div>
+			<div class="row">
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+				  <label for="page_image_ar">Page Image Ar</label>
+				  <div class="input-group">
+					   <input required class="form-control" ng-model="page.page_image_ar" type="text"
+				   name="page_image_ar" id="page_image_ar" readonly>
+				   <div class="input-group-addon with-link">
+					   <a filemanager-btn="page_image_ar" class="" type="button"><i class="fa fa-search"></i></a>
+				   </div>
+				  </div>
+					 <span ng-show="pageForm.page_image_ar.$dirty && pageForm.page_image_ar.$invalid"
+					  class="help-inline text-red">Page Image Ar Required</span>
+				</div>
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+					<div class="form-group">
+						<label for="page_image_ar">Image Preview </label>
+						<img ng-src="{{page.page_image_ar}}" src="http://localhost/Shawermatac-New/src/uploads/nophoto.jpg" width="100%" class="img-responsive">
+					</div>
+				</div>
+			</div>
+        </uib-tab>
+
+        <uib-tab heading="Custom Fields" select="custom_fieldtooltipIsOpen = true">
+            <div class="box box-widget">
+                <div class="box-header">
+                    <h3 class="box-title">Section's Custom Fields</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+
+                                <th width="20%">Label En | Ar &nbsp;&nbsp;<a href="" uib-tooltip="The label en | ar of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+                                <th width="20%">Value &nbsp;&nbsp;<a href="" uib-tooltip="The Value of the Custom Field" tooltip-placement="top"><i class="fa fa-question-circle"></i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="custom_field in page.custom_fields">
+                                <td >{{custom_field.label_en +' | ' + custom_field.label_ar}}</td>
+                                <td >
+                                    <div class="input-group">
+                                    <input type="text" ng-if="custom_field.type=='text'" class="form-control" ng-model="page.custom_field_values[$index].value">
+                                    <textarea ng-if="custom_field.type=='textarea'" class="form-control" ng-model="page.custom_field_values[$index].value"></textarea>
+                                    <input type="file" ng-if="custom_field.type=='file'" class="form-control" ng-model="page.custom_field_values[$index].value">
+
+                                    <textarea ng-if="custom_field.type=='editor'" ui-tinymce rows="6" class="form-control v-resize" name="value"
+                                       ng-model="page.custom_field_values[$index].value"></textarea>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div>
+        </uib-tab>        
+
+
+    </uib-tabset>
+    </form>
+	
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(page)"><i class="fa fa-ban"></i>Cancel</button>
+</div>
+

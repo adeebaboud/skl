@@ -1,0 +1,43 @@
+<section >
+    <ul class="list-unstyled notification-list">
+        <li ng-repeat="notification in notifications.items" class="clearfix">
+
+            <h5><i class="fa fa-bell"></i> <span>{{notification.note_en}}</span></h5>
+            <span><i class="fa fa-building-o"></i><strong> Branch: </strong>{{notification.branch_name_en}}</span><br/>
+            <span><i class="fa fa-shopping-cart"></i> <strong> 
+			Branch Order #: </strong>{{notification.order_number}}</span><br/>
+            <span><i class="fa fa-money"></i> <strong>Order
+                Value:</strong> {{notification.order_total_value}} S.R</span><br/>
+            <span class="small"><i class="fa fa-calendar"></i>  {{notification.notification_date}}</span><br/>
+
+            <div class="btn-group  btn-block" uib-dropdown>
+                <button id="split-button" type="button" class="btn btn-sm  btn-block btn-warning"
+                        ng-if="notification.order_status == 0">Pending
+                </button>
+                <button id="split-button" type="button" class="btn btn-sm   btn-primary"
+                        ng-if="notification.order_status == 1">Ready
+                </button>
+                <button id="split-button" type="button" class="btn btn-sm   btn-success"
+                        ng-if="notification.order_status == 2">Delivered
+                </button>
+                <button id="split-button" type="button" class="btn btn-sm   btn-danger"
+                        ng-if="notification.order_status == 3">Canceled
+                </button>
+                <button type="button" class="btn btn-default btn-sm down" uib-dropdown-toggle>
+                    <i class="fa fa-chevron-down"></i>
+                </button> 
+				<button ng-click="viewOrder(notification.order_id)" type="button" class="btn btn-primary btn-sm down">
+                    <i class="fa fa-eye"></i>
+                </button>
+                <button class="btn btn-danger btn-sm down" ng-click="removeNotification(notification)" uib-tooltip="Remove"><i class="fa fa-times"></i></button>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+                    <li role="menuitem" ng-repeat="status in status_list"
+                        ng-hide="{{status.status_id}}==notification.order_status">
+                        <a href="" ng-click="change_status(notification.order_id,status.status_id)">{{status.status_name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div id="sound" style="opacity: 0;"></div>
+</section>

@@ -1,0 +1,239 @@
+/* ABOUT US PAGE */
+
+.about-us {
+  overflow-x: hidden;
+  line-height: 1.7;
+
+  p, li {
+    font-family: Raleway-r;
+    font-size: 14px;
+    list-style-type: none;
+  }
+
+  h2, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    color: #f7954d;
+    font-size: 35px;
+    font-family: Raleway-el;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    position: relative;
+  }
+
+  #heading-1 {
+    position: relative;
+    &:after {
+      content: '';
+      background-color: #f7954d;
+      position: absolute;
+      width: 40%;
+      height: 1px;
+      top: 50%;
+      left: 56%;
+    }
+  }
+
+  #heading-2 {
+    position: relative;
+    &:after {
+      content: '';
+      background-color: #f7954d;
+      position: absolute;
+      width: 7%;
+      height: 1px;
+      top: 50%;
+      left: 95%;
+    }
+  }
+
+  #heading-3 {
+    position: relative;
+    &:after {
+      content: '';
+      background-color: #f7954d;
+      position: absolute;
+      width: 26%;
+      height: 1px;
+      top: 50%;
+      left: 72%;
+    }
+  }
+
+  #heading-4 {
+    position: relative;
+    &:after {
+      content: '';
+      background-color: #f7954d;
+      position: absolute;
+      width: 26%;
+      height: 1px;
+      top: 55%;
+      left: 71%;
+    }
+  }
+
+  #heading-5 {
+    position: relative;
+    &:after {
+      content: '';
+      background-color: #f7954d;
+      position: absolute;
+      width: 75%;
+      height: 1px;
+      top: 50%;
+      left: 22%;
+    }
+  }
+
+  #about, #trademarks {
+    p {
+      padding-right: 5%;
+    }
+  }
+
+  ul {
+    li {
+      list-style-type: none;
+    }
+  }
+
+  strong {
+    color: #494949;
+  }
+
+  .shadow1 {
+    box-shadow: 0 15px 6px -6px #777;
+  }
+
+  #vision, #why, #activities {
+    padding-left: 10%;
+  }
+
+  #first {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      width: 96%;
+      left: -11%;
+      height: 0px;
+      top: 94%;
+      -moz-transform: rotate(2deg);
+      -webkit-transform: rotate(2deg);
+      -o-transform: rotate(2deg);
+      -ms-transform: rotate(2deg);
+      transform: rotate(2deg);
+      -webkit-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+  }
+
+  #about {
+    .box {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 70%;
+        left: 12%;
+        height: 0px;
+        top: 94%;
+        -moz-transform: rotate(-2deg);
+        -webkit-transform: rotate(-2deg);
+        -o-transform: rotate(-2deg);
+        -ms-transform: rotate(-2deg);
+        transform: rotate(-2deg);
+        -webkit-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+    }
+  }
+
+  #trademarks {
+    .box {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        width: 70%;
+        left: 12%;
+        height: 0px;
+        top: 91%;
+        -moz-transform: rotate(-2deg);
+        -webkit-transform: rotate(-2deg);
+        -o-transform: rotate(-2deg);
+        -ms-transform: rotate(-2deg);
+        transform: rotate(-2deg);
+        -webkit-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 18px 14px 14px rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+    }
+  }
+
+  #activities {
+    .text-light {
+      color: #494949 !important;
+    }
+  }
+
+  #trademarks {
+    img {
+      height: 343px;
+    }
+  }
+
+  img {
+    &:hover {
+      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  }
+
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    #heading-1, #heading-2, #heading-3, #heading-4, #heading-5 {
+      &:after {
+        display: none;
+      }
+    }
+
+    #about, #trademarks {
+      h2 {
+        padding-left: 8%;
+      }
+      p{
+        padding-left: 10%;
+      }
+    }
+  }
+
+}

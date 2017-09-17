@@ -1,0 +1,99 @@
+<section class="sidebar" ng-controller="menuController">
+    <!-- Sidebar user panel -->
+
+
+
+    <!-- sidebar menu: -->
+    <ul class="sidebar-menu" auto-active>
+        <li class="header">Main <b>Menu</b></li> 
+        <li>
+            <a href="#/" >
+                <i class="fa fa-tachometer"></i> <span>Dashboard</span>
+            </a>
+        </li>
+		 <li ng-show="user.is_admin">
+            <a href="#/biography">
+                <i class="fa fa-file-o"></i> <span>Biography</span>
+            </a>
+        </li> 
+		<li ng-show="user.is_admin">
+            <a href="#/users" class="">
+                <i class="fa fa-users"></i> <span>Users</span>
+            </a>
+        </li>
+		<li ng-show="user.is_admin">
+            <a href="#/groups">
+               <i class="fa fa-th-large"></i> <span>Groups</span>
+            </a>
+        </li>
+		 <li ng-show="user.is_admin ">
+            <a href="#/sections">
+             <i class="fa fa-pie-chart"></i> <span>Sections</span>
+            </a>
+        </li>
+		 <li ng-show="user.is_admin">
+            <a href="#/pages">
+                <i class="fa fa-files-o"></i> <span>Pages</span>
+            </a>
+		</li>
+		<li ng-show="user.is_admin ">
+            <a href="#/sliders">
+              <i class="fa fa-picture-o"></i>
+               <span>Sliders</span>
+            </a>
+        </li>
+		<li ng-show="user.is_admin ">
+            <a href="#/menu">
+              <i class="fa fa-list"></i>
+               <span>Menus</span>
+            </a>
+        </li>
+
+        <li ng-show="user.is_admin">
+            <a href="#/categories">
+                <i class="fa fa-folder-o"></i><span>Categories</span>
+            </a>
+        </li>
+        <li ng-show="user.is_admin">
+            <a href="#/products">
+               <i class="fa fa-cubes"></i>
+                <span>Products</span>
+            </a>
+        </li>
+
+        <li ng-show="user.is_admin">
+            <a href="#/branches">
+                <i class="fa fa-building-o"></i> <span>Branches</span>
+            </a>
+        </li>
+        
+        <li ng-show="user.is_admin ">
+            <a href="#/newsletter-subscribes">
+              <i class="fa fa-newspaper-o "></i>
+               <span>Newsletter Subscribes</span>
+            </a>
+        </li>
+
+		<li ng-show="user.is_admin ">
+            <a href="#/contactus">
+              <i class="fa fa-phone"></i>
+               <span>Contact Us</span>
+            </a>
+        </li>
+
+        <li ng-repeat="module in modules | orderBy: 'sort' ">
+			<a href="#{{module.href}}">
+                <i class="fa fa-{{module.icon}}"></i> <span>{{module.title}}</span>
+            </a>
+		</li> 
+		
+    </ul>
+	<ul class="sidebar-menu"  ng-show="user.is_admin && sections.length > 0" auto-active>
+        <li class="header">CMS <b>Modules</b> </li>
+		<li ng-repeat="section in sections">
+            <a href="#/sections/{{section.section_id}}">
+                    <i class="fa fa-th"></i> <span>{{section.section_title_en}}</span>
+             </a>
+		</li>
+	</ul>
+</section>

@@ -1,0 +1,39 @@
+<div class="modal-header light-blue-bg">
+   <a class="pull-right" modal-fullscreen href="#" > </a>
+    <h3 class="modal-title">
+        {{title}}
+    </h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <form name="modelForm" id="modelForm">
+	 <uib-tabset class="nav-tabs-custom">
+
+		<uib-tab ng-repeat="tab in data.tabs" heading="{{tab.name}}" >
+			<div class="row">
+				<div ng-repeat="field in tab.fields" class="col-md-6 col-xs-6 col-sm-6">
+					<div ng-if="field.type!='checkbox'"  class="form-group">
+						<label for="name">{{field.name}}</label>
+						<div class="form-control">{{model[field.field]}}</div>
+					</div>
+					<div ng-if="field.type=='checkbox'"  class="form-group">
+						<h5 class="modal-sub-title"><i class="fa fa-check-circle-o"></i>{{field.name}}</h5>
+						<label class="tgl" for="status">
+							<input disabled="disabled" type="checkbox" ng-model="model[field.field]" id="{{field.field}}" name="{{field.field}}" ng-true-value="1" ng-false-value="0">
+							<span data-on="Yes" data-off="No"></span>
+						</label>
+					</div>
+				</div>
+				
+			</div>
+		</uib-tab>
+
+    </uib-tabset>
+    </form>
+
+	<div class="overlay" ng-show="isLoading.grid">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="cancel(model)"><i class="fa fa-ban"></i>Close</button>
+</div>

@@ -1,0 +1,90 @@
+<div class="modal-header light-blue-bg">
+    <a class="pull-right" modal-fullscreen href="#"> </a>
+    <h3 class="modal-title">
+        {{title}}
+    </h3>
+</div>
+<div class="modal-body overlay-wrapper">
+    <div class="col-md-12" ng-show="errors">
+        <div class="alert alert-danger">
+            <strong>Please Fix the Following:</strong>
+            <p ng-repeat="error in errors">
+                {{error}}
+            </p>
+        </div>
+    </div>
+    <form name="category_idForm" id="category_idForm">
+        <uib-tabset class="nav-tabs-custom">
+            <uib-tab heading="Category Details">
+                <div class="form-group">
+                    <label for="category_sort">Category Sort</label> <input required="" class="form-control" ng-model="category.category_sort"
+                        type="number" name="category_sort" id="category_sort">
+                    <span ng-show="categoryForm.category_sort.$dirty &amp;&amp; addPageForm.category_sort.$invalid" class="help-inline">Category Sort Required</span>
+                </div>
+                <div class="form-group">
+                    <label for="parent_category"> Parent Category</label>
+                    <ui-select id="parent_category" ng-model="category.parent_category_id" theme="bootstrap" reset-search-input="false">
+                        <ui-select-choices class="ui-select-choices" repeat="cat.category_id as cat in categories" refresh="searchCategories($select.search)"
+                            refresh-delay="0">
+                            <div ng-bind-html="cat.category_name_en + ' ' + cat.category_name_ar"></div>
+                        </ui-select-choices>
+                        <ui-select-match class="ui-select-match" placeholder="Select Parent Category">{{$select.selected.category_name_en}} {{$select.selected.category_name_ar}}</ui-select-match>
+                    </ui-select>
+                </div>
+            </uib-tab>
+            <uib-tab heading="English">
+                <div class="row">
+                    <div class="col-md-6 col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="category_name_en">Category Name En</label> <input required="" class="form-control"
+                                ng-model="category.category_name_en" type="text" name="category_name_en" id="category_name_en">                            <span ng-show="categoryForm.category_name_en.$dirty &amp;&amp; addPageForm.category_name_en.$invalid"
+                                class="help-inline text-red">Category Name En Required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="category_description_en">Category Description En</label>
+                            <textarea required="" rows="3" class="form-control" name="category_description_en" id="category_description_en" ng-model="category.category_description_en">
+			</textarea>
+                            <span ng-show="categoryForm.category_description_en.$dirty &amp;&amp; addPageForm.category_description_en.$invalid" class="help-inline text-red">Category Description En Required</span>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </uib-tab>
+            <uib-tab heading="Arabic">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="category_name_ar">Category Name Ar</label> <input required="" class="form-control"
+                                ng-model="category.category_name_ar" type="text" name="category_name_ar" id="category_name_ar">                            <span ng-show="categoryForm.category_name_ar.$dirty &amp;&amp; addPageForm.category_name_ar.$invalid"
+                                class="help-inline text-red">Category Name Ar Required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category_description_ar">Category Description Ar</label>
+                            <textarea required="" rows="3" class="form-control" name="category_description_ar" id="category_description_ar" ng-model="category.category_description_ar">
+			</textarea>
+                            <span ng-show="categoryForm.category_description_ar.$dirty &amp;&amp; addPageForm.category_description_ar.$invalid" class="help-inline text-red">Category Description Ar Required</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </uib-tab>
+
+
+        </uib-tabset>
+    </form>
+
+    <div class="overlay" ng-show="isLoading.grid">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()"><i class="fa fa-check"></i>Save</button>
+    <button class="btn btn-danger" type="button" ng-click="cancel(category)"><i class="fa fa-ban"></i>Cancel</button>
+</div>
